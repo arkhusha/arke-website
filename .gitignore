@@ -12,3 +12,17 @@ _docx_extract/
 _docx_out.txt
 *.tmp
 *~
+
+# Internal / working docs (kept locally, not part of the live site)
+ARKE_Website_Copy_by_Page.docx
+CHANGELOG_*.md
+README.md
+*.skill
+
+# Unused fonts (site uses Google Fonts CDN + fonts/analogue-italic-webfont.ttf only)
+/Alta_light.otf
+/Alta_regular.otf
+/Montserrat-Italic-VariableFont_wght.ttf
+/Montserrat-VariableFont_wght.ttf
+fonts/Alta_light.otf
+fonts/Alta_regular.otf
