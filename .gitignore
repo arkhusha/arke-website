@@ -1,0 +1,14 @@
+# OS junk
+Thumbs.db
+Thumbs.db:encryptable
+Desktop.ini
+.DS_Store
+
+# Backups / archives
+*.zip
+
+# Temp / working files
+_docx_extract/
+_docx_out.txt
+*.tmp
+*~

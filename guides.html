@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guides — ARK Experience</title>
+  <meta name="description" content="Free digital guides for natural body care you can make at home. Tested formulas, plain-language science, beginner-safe methods.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience"></a>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav class="nav">
+      <a href="guides.html" class="active">Guides</a>
+      <a href="about.html">About</a>
+      <a href="#free-guide" class="btn btn--primary">Get the Free Guide</a>
+    </nav>
+  </header>
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <p class="eyebrow">The Library</p>
+    <h1>Guides & <span class="accent-italic">formulas</span></h1>
+    <p class="hero-sub" style="max-width: 560px; margin-left: auto; margin-right: auto;">Every guide is a complete education: the science in plain language, a tested formula with exact percentages, and a method you can follow to make something great for your skin.</p>
+  </section>
+
+  <!-- ============ GUIDES GRID ============ -->
+  <section class="section section--cream" style="padding-top: clamp(56px, 8vw, 100px);">
+    <div class="container">
+      <div class="guides-grid" style="margin-top: 0;">
+        <article class="guide-card reveal">
+          <a href="guide-beginners.html" class="card-media-link">
+            <div class="img-slot img-slot--dawn">
+              <img class="slot-photo" src="assets/guide-beginners.jpg" alt="Two women exploring a natural skincare guide on a laptop" loading="lazy">
+            </div>
+          </a>
+          <div class="guide-card-body">
+            <span class="badge">Free Guide</span>
+            <h3><a href="guide-beginners.html" class="card-title-link">Beginner's Guide to Natural Body Care</a></h3>
+            <p>The place to start. Learn to read ingredient labels, understand what "natural" actually means, spot greenwashing, and discover what it takes to make your own body care at home.</p>
+            <div class="meta"><span>16 pages</span><span>Instant PDF</span></div>
+            <div class="card-links">
+              <a href="guide-beginners.html" class="text-link">Explore the guide <span>→</span></a>
+              <button type="button" class="text-link" data-download-modal data-guide="Beginner's Guide to Natural Body Care" data-desc="16 pages on reading labels, understanding ingredients, and taking your first step into making your own. Instant PDF, straight to your inbox.">Download the guide <span>→</span></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="guide-card reveal reveal-d1">
+          <a href="guide-lip-balm.html" class="card-media-link">
+            <div class="img-slot img-slot--golden">
+              <img class="slot-photo" src="assets/guide-lip-balm.jpg" alt="Two women holding natural lip balm tubes outdoors" loading="lazy">
+            </div>
+          </a>
+          <div class="guide-card-body">
+            <span class="badge">Free Guide</span>
+            <h3><a href="guide-lip-balm.html" class="card-title-link">Making Natural Lip Balm at Home</a></h3>
+            <p>Your first real make. One tested formula explained ingredient by ingredient, a full step-by-step method, and everything you need to know about temperature, filling, and storage.</p>
+            <div class="meta"><span>15 pages</span><span>20 tubes per batch</span></div>
+            <div class="card-links">
+              <a href="guide-lip-balm.html" class="text-link">Explore the guide <span>→</span></a>
+              <button type="button" class="text-link" data-download-modal data-guide="Making Natural Lip Balm at Home" data-desc="One tested formula, 15 pages, and everything you need for your first batch. Instant PDF, straight to your inbox.">Download the guide <span>→</span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT'S INSIDE EVERY GUIDE ============ -->
+  <section class="section section--white">
+    <div class="container split">
+      <div class="reveal">
+        <p class="eyebrow">The ARKE Standard</p>
+        <h2 class="section-heading" style="margin-bottom: 12px;">What's inside <span class="accent-italic">every</span> guide.</h2>
+        <ul class="feature-list">
+          <li><span><strong>A formula, not just a recipe.</strong> Exact percentages and batch weights, so you can scale up or down and the result stays the same.</span></li>
+          <li><span><strong>The why behind every ingredient.</strong> What it does, why it's in the formula, and what changes if you swap it.</span></li>
+          <li><span><strong>A Key Takeaway on every page.</strong> The one thing to remember, so the knowledge actually sticks.</span></li>
+          <li><span><strong>Tested in real life.</strong> Every formula is made and used daily — by me, my family, and my friends, in Thailand's year-round heat.</span></li>
+          <li><span><strong>Beginner-safe methods.</strong> Written for your very first batch. If a step matters, it's explained — never assumed.</span></li>
+        </ul>
+      </div>
+      <div class="reveal reveal-d1">
+        <div class="img-slot img-slot--earth">
+          <img class="slot-photo" src="assets/inside-every-guide.jpg" alt="Natural body care ingredients and tools laid out" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EMAIL CAPTURE ============ -->
+  <section class="section section--dark" id="free-guide">
+    <div class="container">
+      <div class="capture-panel reveal">
+        <h2>Not sure where to start?</h2>
+        <p>Begin with the free Beginner's Guide to Natural Body Care. It gives you the foundation every other guide builds on — instant PDF, straight to your inbox.</p>
+        <form class="capture-form" novalidate>
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+          <button type="submit" class="btn btn--solid">Send Me the Guide</button>
+        </form>
+        <p class="capture-success">It's on its way — check your inbox. ✦</p>
+        <p class="capture-fineprint">Free PDF · No spam, ever · Unsubscribe anytime</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience"></a>
+        <p>Digital guides for natural body care you can make at home. Formulated and tested in Thailand.</p>
+        <p class="tagline">Your skin. Your ritual. Your recipe.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="guides.html">All Guides</a></li>
+          <li><a href="guide-beginners.html">Beginner's Guide</a></li>
+          <li><a href="guide-lip-balm.html">Lip Balm Guide</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#" rel="noopener">Instagram</a></li>
+          <li><a href="#" rel="noopener">TikTok</a></li>
+          <li><a href="#" rel="noopener">YouTube</a></li>
+          <li><a href="#" rel="noopener">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ARK Experience · Thailand</span>
+      <span>All guides are for educational purposes only.</span>
+    </div>
+  </footer>
+
+  <!-- ============ DOWNLOAD MODAL ============ -->
+  <div class="modal" id="download-modal" role="dialog" aria-modal="true" aria-labelledby="download-modal-title" aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <button type="button" class="modal-close" aria-label="Close" data-modal-close>&times;</button>
+      <p class="eyebrow eyebrow--center">Free Guide</p>
+      <h2 id="download-modal-title">Get the guide — free.</h2>
+      <p data-modal-desc>Instant PDF, straight to your inbox.</p>
+      <form class="capture-form" novalidate>
+        <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit" class="btn btn--solid">Send Me the Guide</button>
+      </form>
+      <p class="capture-success">It's on its way — check your inbox. ✦</p>
+      <p class="capture-fineprint">Free PDF · No spam, ever · Unsubscribe anytime</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
