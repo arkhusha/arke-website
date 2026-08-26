@@ -291,18 +291,45 @@ body::after {
 .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -14%;
   pointer-events: none;
   background:
     radial-gradient(ellipse 46% 18% at 18% 30%, rgba(255, 255, 255, 0.5), transparent 70%),
     radial-gradient(ellipse 52% 20% at 85% 18%, rgba(255, 255, 255, 0.4), transparent 70%),
     radial-gradient(ellipse 60% 22% at 65% 68%, rgba(255, 255, 255, 0.45), transparent 70%),
     radial-gradient(ellipse 44% 16% at 8% 78%, rgba(255, 255, 255, 0.5), transparent 70%);
+  animation: heroDrift 42s ease-in-out infinite alternate;
+  will-change: transform;
+}
+/* second, slower cloud layer for gentle parallax drift */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: -16%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 40% 16% at 40% 12%, rgba(255, 255, 255, 0.4), transparent 72%),
+    radial-gradient(ellipse 50% 18% at 95% 55%, rgba(255, 255, 255, 0.32), transparent 72%),
+    radial-gradient(ellipse 42% 15% at 30% 92%, rgba(255, 255, 255, 0.36), transparent 72%);
+  animation: heroDrift2 58s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes heroDrift {
+  from { transform: translate(-5%, 2%) scale(1.05); }
+  to   { transform: translate(9%, -6%) scale(1.12); }
+}
+@keyframes heroDrift2 {
+  from { transform: translate(6%, -3%) scale(1.06); }
+  to   { transform: translate(-10%, 5%) scale(1.13); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after { animation: none; }
 }
 
 .hero-botanical { display: none; }
 
-.hero-inner { position: relative; max-width: 1400px; width: 100%; }
+.hero-inner { position: relative; z-index: 2; max-width: 1400px; width: 100%; }
 
 .hero-tagline {
   font-family: var(--font-accent);

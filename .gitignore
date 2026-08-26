@@ -19,6 +19,9 @@ CHANGELOG_*.md
 README.md
 *.skill
 
+# Stale duplicate of the wholesale page (live version is for-business.html)
+bulk-order/
+
 # Unused fonts (site uses Google Fonts CDN + fonts/analogue-italic-webfont.ttf only)
 /Alta_light.otf
 /Alta_regular.otf
