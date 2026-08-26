@@ -75,7 +75,7 @@ main{margin-top:78px;padding-bottom:70px}
 /* ---------- Showcase (3D) ---------- */
 .showcase{position:sticky;top:20px}
 .stage{
-  height:440px;display:flex;align-items:center;justify-content:center;
+  aspect-ratio:3 / 4;display:flex;align-items:center;justify-content:center;
   perspective:1000px;border-radius:20px 20px 0 0;overflow:hidden;position:relative;
   background:linear-gradient(180deg,#6f97c6 0%,#8fb0d6 34%,#b9d2ec 66%,#eaf3fc 100%);
 }
@@ -330,7 +330,6 @@ footer .tag{font-family:'Oswald';letter-spacing:.2em;color:#fff}
       <div class="pad" style="padding-top:16px">
         <div class="model-name"><span class="n" id="mName">Whipped Body Butter</span> · <span class="s" id="mSize">20 g</span></div>
         <div class="scent" id="scent"><span class="sw" id="scentSw"></span><span id="scentTxt">Pick your essential oils →</span></div>
-        <div class="hint" id="mHint">Move over the product to tilt it</div>
       </div>
     </div>
   </div>
@@ -345,7 +344,7 @@ footer .tag{font-family:'Oswald';letter-spacing:.2em;color:#fff}
 
     <div class="card pad">
       <div class="step-h"><span class="step-n">2</span><h2>Blend the essential oils</h2></div>
-      <p class="oil-note">Pick one, or mix up to <strong>three</strong>. The product tint blends to match your choice.</p>
+      <p class="oil-note" id="oilIntro">Pick one, or mix up to <strong>three</strong>. The product tint blends to match your choice.</p>
       <div id="oilFams"></div>
     </div>
 
@@ -446,8 +445,8 @@ const PRODUCTS = [
   {id:'lip-balm',    name:'Lip Balm',            size:'7 g',   shape:'tube',   base:'#f2ddc9'},
   {id:'candle',      name:'Wooden-Wick Candle',  size:'100 ml',shape:'candle', base:'#f1e7d6'},
 ].map(p=>({...p, img:'images/'+p.id+'.png',
-  video: p.id==='body-butter' ? 'images/body-butter.mp4' : null,
-  poster: p.id==='body-butter' ? 'images/body-butter-poster.jpg' : null}));
+  video: {'body-butter':'images/body-butter.mp4','hair-oil':'images/hair-oil.mp4'}[p.id] || null,
+  poster: {'body-butter':'images/body-butter-poster.jpg'}[p.id] || null}));
 
 const OILS = {
   'Citrus':          {color:'#f4b740', items:['Grapefruit','Kaffir Lime','Lemon','Orange','Tangerine','Thai Bergamot']},
@@ -496,7 +495,13 @@ function renderProducts(){
     const d=document.createElement('div');
     d.className='prod'+(p.id===sel.product.id?' sel':'');
     d.innerHTML=`${pIcon(p)}<div class="pn">${p.name}</div><div class="ps">${p.size}</div>`;
-    d.onclick=()=>{ sel.product=p; renderProducts(); updateModel(); };
+    d.onclick=()=>{
+      const wasHair = sel.product.id==='hair-oil';
+      sel.product=p;
+      if(p.id==='hair-oil') sel.oils=['Rosemary'];   // Hair Oil ships with Rosemary only
+      else if(wasHair) sel.oils=[];
+      renderProducts(); renderOils(); updateModel();
+    };
     g.appendChild(d);
   });
 }
@@ -504,6 +509,16 @@ function renderProducts(){
 /* ---------- render oils ---------- */
 function renderOils(){
   const wrap=$('#oilFams'); wrap.innerHTML='';
+  const intro=$('#oilIntro');
+  // Hair Oil is a fixed Rosemary formula — no oil choices
+  if(sel.product.id==='hair-oil'){
+    if(intro) intro.style.display='none';
+    wrap.innerHTML='<div class="fam"><h4><span class="dot" style="background:#7fae6b"></span>Included oil</h4>'
+      +'<div class="oils"><span class="oil sel" style="cursor:default">Rosemary</span></div>'
+      +'<p class="oil-note">Hair Oil is formulated with <strong>Rosemary</strong> — no other oils can be added to this product.</p></div>';
+    return;
+  }
+  if(intro) intro.style.display='';
   for(const fam in OILS){
     const f=OILS[fam];
     const box=document.createElement('div'); box.className='fam';
