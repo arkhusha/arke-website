@@ -449,7 +449,7 @@ const PRODUCTS = [
   {id:'lip-balm',    name:'Lip Balm',            size:'7 g',   shape:'tube',   base:'#f2ddc9'},
   {id:'candle',      name:'Wooden-Wick Candle',  size:'100 ml',shape:'candle', base:'#f1e7d6'},
 ].map(p=>({...p, img:'images/'+p.id+'.png',
-  video: {'body-butter':'images/body-butter.mp4','hair-oil':'images/hair-oil.mp4','body-oil':'images/body-oil.mp4','deodorant':'images/deodorant.mp4'}[p.id] || null,
+  video: {'body-butter':'images/body-butter.mp4','hair-oil':'images/hair-oil.mp4','body-oil':'images/body-oil.mp4','deodorant':'images/deodorant.mp4','lip-balm':'images/lip-balm.mp4'}[p.id] || null,
   poster: {'body-butter':'images/body-butter-poster.jpg'}[p.id] || null}));
 
 const OILS = {
