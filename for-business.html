@@ -36,8 +36,8 @@ h1,h2,h3,.disp{font-family:'Oswald',sans-serif;font-weight:600;line-height:1.1;m
 /* ---------- Header ---------- */
 header{
   background:
-    radial-gradient(120% 90% at 78% -10%, #dfecfb 0%, rgba(223,236,251,0) 42%),
-    linear-gradient(165deg,var(--sky-deep) 0%,var(--sky) 48%,var(--sky-light) 78%,#dbeaf7 100%);
+    radial-gradient(120% 90% at 84% -12%, rgba(210,228,249,.4) 0%, rgba(210,228,249,0) 46%),
+    linear-gradient(165deg,#2b4762 0%,#385877 28%,#547da8 58%,#8fb2da 84%,#c2dbf1 100%);
   color:var(--cloud);padding:38px 0 66px;position:relative;overflow:hidden;
 }
 header .wrap{position:relative;z-index:3}
@@ -264,8 +264,9 @@ footer .tag{font-family:'Oswald';letter-spacing:.2em;color:#fff}
           <feGaussianBlur in="clouds" stdDeviation="4.5"/>
         </filter>
         <linearGradient id="cloudFade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#fff" stop-opacity="0.35"/>
-          <stop offset="0.5" stop-color="#fff" stop-opacity="0.95"/>
+          <stop offset="0" stop-color="#fff" stop-opacity="0.08"/>
+          <stop offset="0.5" stop-color="#fff" stop-opacity="0.22"/>
+          <stop offset="0.78" stop-color="#fff" stop-opacity="0.75"/>
           <stop offset="1" stop-color="#fff" stop-opacity="1"/>
         </linearGradient>
         <mask id="cloudMask"><rect width="1200" height="520" fill="url(#cloudFade)"/></mask>
