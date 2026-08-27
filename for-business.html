@@ -449,7 +449,7 @@ const PRODUCTS = [
   {id:'lip-balm',    name:'Lip Balm',            size:'7 g',   shape:'tube',   base:'#f2ddc9'},
   {id:'candle',      name:'Wooden-Wick Candle',  size:'100 ml',shape:'candle', base:'#f1e7d6'},
 ].map(p=>({...p, img:'images/'+p.id+'.png',
-  video: {'body-butter':'images/body-butter.mp4','hair-oil':'images/hair-oil.mp4'}[p.id] || null,
+  video: {'body-butter':'images/body-butter.mp4','hair-oil':'images/hair-oil.mp4','body-oil':'images/body-oil.mp4','deodorant':'images/deodorant.mp4'}[p.id] || null,
   poster: {'body-butter':'images/body-butter-poster.jpg'}[p.id] || null}));
 
 const OILS = {
@@ -500,10 +500,11 @@ function renderProducts(){
     d.className='prod'+(p.id===sel.product.id?' sel':'');
     d.innerHTML=`${pIcon(p)}<div class="pn">${p.name}</div><div class="ps">${p.size}</div>`;
     d.onclick=()=>{
-      const wasHair = sel.product.id==='hair-oil';
+      const prev = sel.product.id;
       sel.product=p;
-      if(p.id==='hair-oil') sel.oils=['Rosemary'];   // Hair Oil ships with Rosemary only
-      else if(wasHair) sel.oils=[];
+      if(p.id==='hair-oil') sel.oils=['Rosemary'];        // Hair Oil ships with Rosemary only
+      else if(p.id==='body-oil') sel.oils=['Lavender'];   // Body Oil: Lavender or Rose (default Lavender)
+      else if(prev==='hair-oil' || prev==='body-oil') sel.oils=[];
       renderProducts(); renderOils(); updateModel();
     };
     g.appendChild(d);
@@ -520,6 +521,16 @@ function renderOils(){
     wrap.innerHTML='<div class="fam"><h4><span class="dot" style="background:#7fae6b"></span>Included oil</h4>'
       +'<div class="oils"><span class="oil sel" style="cursor:default">Rosemary</span></div>'
       +'<p class="oil-note">Hair Oil is formulated with <strong>Rosemary</strong> — no other oils can be added to this product.</p></div>';
+    return;
+  }
+  // Body Oil is available in Lavender or Rose — pick one
+  if(sel.product.id==='body-oil'){
+    if(intro) intro.style.display='none';
+    const opts=['Lavender','Rose'];
+    wrap.innerHTML='<div class="fam"><h4><span class="dot" style="background:#c58fc7"></span>Choose your scent</h4>'
+      +'<div class="oils">'+opts.map(n=>'<span class="oil'+(sel.oils[0]===n?' sel':'')+'" data-oil="'+n+'">'+n+'</span>').join('')+'</div>'
+      +'<p class="oil-note">Body Oil is available in <strong>Lavender</strong> or <strong>Rose</strong> — choose one.</p></div>';
+    wrap.querySelectorAll('.oil').forEach(chip=>chip.onclick=()=>{ sel.oils=[chip.dataset.oil]; renderOils(); updateModel(); });
     return;
   }
   if(intro) intro.style.display='';
