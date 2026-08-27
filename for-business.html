@@ -51,7 +51,9 @@ header .eyebrow{color:#dbe9fb}
   background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(4px);
   font-size:.82rem;color:#fff;font-weight:400}
 .moq-hero strong{font-weight:600}
-.moq-hero .pin{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
+.moq-hero .pin{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25);flex:none}
+.moq-hero .moq-txt{line-height:1.45}
+@media(max-width:560px){.moq-hero{align-items:flex-start}.moq-hero .pin{margin-top:.45em}}
 /* Clouds — soft realistic cumulus via fractal-noise filter */
 .clouds{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .cloudfield{position:absolute;top:-12%;left:-12%;width:124%;height:124%;
@@ -66,7 +68,7 @@ main{margin-top:78px;padding-bottom:70px}
 .grid .showcase{order:1;margin-top:0}
 .grid .stack{order:2}
 @media(max-width:920px){.grid{grid-template-columns:1fr}
-  .grid .stack{order:2}.grid .showcase{order:1;margin-top:0}}
+  .grid .stack{order:2}.grid .showcase{order:1;margin-top:0;position:static}}
 
 .card{background:var(--cloud);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
 .pad{padding:26px}
@@ -275,7 +277,7 @@ footer .tag{font-family:'Oswald';letter-spacing:.2em;color:#fff}
     <p class="eyebrow" style="margin-top:26px">Bulk order constructor</p>
     <h1>Build your <span class="accent">custom</span> batch.</h1>
     <p class="sub">Small-batch natural body care for hotels, spas &amp; villas — choose the product, blend the botanicals, set your quantity, and request a quote. Formulated in Thailand.</p>
-    <div class="moq-hero"><span class="pin"></span>Minimum order · <strong>3 different products</strong>, each <strong>30+ pieces</strong></div>
+    <div class="moq-hero"><span class="pin"></span><span class="moq-txt">Minimum order · <strong>3 different products</strong>, each <strong>30+ pieces</strong></span></div>
   </div>
 </header>
 
