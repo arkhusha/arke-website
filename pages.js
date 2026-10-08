@@ -6,6 +6,22 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
+  // ---------- Page titles: lines never wrap, so shrink the title until the widest line fits ----------
+  const pTitle = $('.p-title');
+  const fitTitle = () => {
+    if (!pTitle) return;
+    pTitle.style.fontSize = '';
+    // lines are nowrap flex rows, so measure their children, and compare with the screen, not the title box
+    const room = Math.min(pTitle.parentElement.clientWidth, document.documentElement.clientWidth) - 32;
+    const lineWidth = (l) => [...l.children].reduce((a, c) => a + c.getBoundingClientRect().width, 0)
+      + (parseFloat(getComputedStyle(l).columnGap) || 0) * (l.children.length - 1);
+    const widest = Math.max(...$$('.p-ln', pTitle).map(lineWidth));
+    if (widest > room) pTitle.style.fontSize = (parseFloat(getComputedStyle(pTitle).fontSize) * room / widest) + 'px';
+  };
+  fitTitle();
+  if (document.fonts) document.fonts.ready.then(fitTitle);
+  addEventListener('resize', fitTitle);
+
   // ---------- Guides index: preview image follows the cursor (desktop pointer only) ----------
   const preview = $('.idx-preview');
   if (preview && matchMedia('(hover: hover) and (min-width: 900px)').matches) {
@@ -86,6 +102,8 @@
   if (stdItems[0]) stdItems[0].classList.add('active');
   if (std) gsap.fromTo('.std-media > :not(.std-count)', { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: std, start: 'top bottom', end: 'bottom top', scrub: true } });
 
+  // ---------- Stats: tiles rise in together, then count up ----------
+  if ($('.stats-grid')) gsap.from('.stat', { y: 36, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.12, scrollTrigger: { trigger: '.stats-grid', start: 'top 88%' } });
   // ---------- Stats: count up ----------
   $$('[data-count]').forEach((el) => {
     const end = +el.dataset.count;

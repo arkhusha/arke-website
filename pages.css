@@ -214,6 +214,7 @@ a.idx-title:hover, .idx-row:hover a.idx-title { color: var(--action-blue); trans
   box-shadow: 0 20px 40px -20px rgba(22, 33, 46, 0.45);
   color: var(--ink); font-size: 12.5px; font-weight: 500; line-height: 1.3;
 }
+.gx-float span { white-space: nowrap; }
 .gx-float strong { font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1; color: var(--sky-deep); }
 .gx-float--a { left: -12%; top: 18%; }
 .gx-float--b { right: -8%; top: 52%; }
@@ -293,13 +294,19 @@ a.idx-title:hover, .idx-row:hover a.idx-title { color: var(--action-blue); trans
   .vals-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tl-panel { grid-template-columns: 1fr; width: min(420px, 82vw); }
   .tl-photo { max-height: 52svh; }
-  .gx-visual { max-width: 420px; margin: 0 auto; }
-  .gx-float--a { left: -4%; }
-  .gx-float--b { right: -4%; }
+  /* the grid item shrank to nothing (only absolute children), so give it a width */
+  .gx-visual { width: 100%; max-width: 420px; margin: 8px auto 0; justify-self: center; }
+  .gx-float--a { left: -3%; top: 10%; }
+  .gx-float--b { right: -3%; top: 46%; }
+  .gx-float--c { left: 6%; bottom: -5%; }
   .chap-big { font-size: clamp(110px, 34vw, 180px); }
-  .stats-grid { grid-template-columns: 1fr; }
-  .stat, .stat:first-child { border-left: 0; padding: 22px 0; border-top: 1px solid rgba(22, 33, 46, 0.12); }
-  .stat:first-child { border-top: 0; }
+  /* one row of three soft cloud tiles instead of a tall stack */
+  .stats { padding: 44px var(--gutter); background: linear-gradient(180deg, var(--sky-mist), var(--cloud)); }
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .stat, .stat:first-child { border: 0; padding: 18px 8px 16px; text-align: center; background: var(--cloud); border-radius: 18px;
+    box-shadow: 0 18px 34px -26px rgba(22, 33, 46, 0.35); }
+  .stat-n { font-size: clamp(44px, 14vw, 64px); }
+  .stat-l { margin-top: 8px; font-size: 9.5px; letter-spacing: 0.14em; line-height: 1.4; }
 }
 @media (max-width: 600px) {
   .p-title { font-size: min(12.5vw, 15svh); }
