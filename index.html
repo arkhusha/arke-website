@@ -4,16 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARK Experience — Natural Body Care, Demystified</title>
-  <meta name="description" content="Digital guides for natural body care you can make at home. Tested formulas, plain-language science, beginner-safe methods. Made with intention.">
+  <meta name="description" content="Too much screen time? Learn a fun, hands-on skill: make natural body care at home for yourself, your family and friends. Tested formulas, plain-language science. Made for Curious.">
+  <script>
+    // Flag JS + motion before first paint so scroll scenes never flash their end state
+    document.documentElement.classList.add('js');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/analogue-italic-webfont.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="images/body-butter-poster.jpg" as="image" media="(max-width: 899px), (max-aspect-ratio: 1/1)">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="home.css">
 </head>
 <body>
 
   <header class="site-header">
-    <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience"></a>
+    <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience" width="140" height="30"></a>
     <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     <nav class="nav">
       <a href="guides.html">Guides</a>
@@ -23,106 +32,238 @@
     </nav>
   </header>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <svg class="hero-botanical hero-botanical--left" viewBox="0 0 200 320" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-      <path d="M100 310 C 92 240, 108 170, 96 90 C 92 60, 98 30, 104 10"/>
-      <path d="M97 250 C 70 240, 50 215, 48 185 C 78 192, 95 215, 97 250 Z"/>
-      <path d="M99 200 C 126 192, 146 168, 150 138 C 119 144, 101 166, 99 200 Z"/>
-      <path d="M96 150 C 70 142, 52 118, 50 88 C 80 95, 95 116, 96 150 Z"/>
-      <path d="M98 105 C 124 96, 142 72, 144 42 C 114 50, 99 71, 98 105 Z"/>
-    </svg>
-    <svg class="hero-botanical hero-botanical--right" viewBox="0 0 200 320" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-      <path d="M100 310 C 92 240, 108 170, 96 90 C 92 60, 98 30, 104 10"/>
-      <path d="M97 250 C 70 240, 50 215, 48 185 C 78 192, 95 215, 97 250 Z"/>
-      <path d="M99 200 C 126 192, 146 168, 150 138 C 119 144, 101 166, 99 200 Z"/>
-      <path d="M96 150 C 70 142, 52 118, 50 88 C 80 95, 95 116, 96 150 Z"/>
-    </svg>
+  <main>
 
-    <div class="hero-inner">
-      <p class="hero-tagline">Made for Curious.</p>
-      <h1>
-        <span class="line">Your skin.</span>
-        <span class="line">Your <span class="accent-italic">ritual</span>.</span>
-        <span class="line">Your recipe.</span>
+  <!-- ============ 01 · HERO ============ -->
+  <section class="h-hero" aria-labelledby="hero-title" data-hero>
+    <div class="cloudlayer" aria-hidden="true">
+      <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="cloudsHero" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0090 0.013" numOctaves="5" seed="14" stitchTiles="stitch" result="noise"/>
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.5 -0.4" result="c"/>
+            <feGaussianBlur in="c" stdDeviation="4.5"/>
+          </filter>
+          <linearGradient id="cloudsHeroFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.15"/>
+            <stop offset="0.55" stop-color="#fff" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0.9"/>
+          </linearGradient>
+          <mask id="cloudsHeroMask"><rect width="1200" height="520" fill="url(#cloudsHeroFade)"/></mask>
+        </defs>
+        <rect width="1200" height="520" filter="url(#cloudsHero)" mask="url(#cloudsHeroMask)"/>
+      </svg>
+    </div>
+
+    <div class="h-stage" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="auto"
+        data-wide="images/body-butter-hero.mp4"
+        data-tall="images/body-butter.mp4" data-tall-poster="images/body-butter-poster.jpg"></video>
+      <script>
+        // Landscape screens (desktop, laptop, sideways tablet) get the 16:9 clip;
+        // phones and upright tablets get the 9:16 one. Only the chosen file loads.
+        (() => {
+          const v = document.currentScript.previousElementSibling;
+          const mq = matchMedia('(min-width: 900px) and (min-aspect-ratio: 1/1)');
+          const pick = () => {
+            const wide = mq.matches;
+            const src = wide ? v.dataset.wide : v.dataset.tall;
+            if (v.getAttribute('src') === src) return;
+            v.classList.toggle('is-tall', !wide);
+            if (wide) v.removeAttribute('poster'); else v.setAttribute('poster', v.dataset.tallPoster);
+            v.src = src;
+            if (document.documentElement.classList.contains('motion')) v.play().catch(() => {});
+          };
+          pick();
+          mq.addEventListener('change', pick);
+        })();
+      </script>
+      <div class="h-stage-shade"></div>
+    </div>
+
+    <div class="h-inner">
+      <p class="h-tagline"><span class="in">Made for Curious.</span></p>
+      <h1 class="h-title" id="hero-title">
+        <span class="ln ln-1"><span class="in">Your skin.</span></span>
+        <span class="ln ln-2">
+          <span class="w-l"><span class="in">Your</span></span>
+          <span class="h-slot" aria-hidden="true"></span>
+          <span class="w-r"><span class="in accent-italic">ritual.</span></span>
+        </span>
+        <span class="ln ln-3"><span class="in">Your recipe.</span></span>
       </h1>
-      <p class="hero-sub">Digital guides for natural body care you can make at home. Understand the why behind every ingredient — then make it with your own hands.</p>
-      <div class="hero-actions">
-        <a href="#free-guide" class="btn btn--primary">Get the Free Guide <span class="arrow">→</span></a>
-        <a href="guides.html" class="btn btn--ghost-light">Browse All Guides</a>
+      <div class="h-meta">
+        <div class="in">
+          <p class="hero-sub">Swap an evening of scrolling for something you make with your own hands. Learn to craft natural body care at home — a fun, practical skill you, your family and your friends get to enjoy every day.</p>
+          <div class="hero-actions">
+            <a href="#free-guide" class="btn btn--cloud">Get the Free Guide <span class="arrow">→</span></a>
+            <a href="guides.html" class="btn btn--ghost-light">Browse All Guides</a>
+          </div>
+          <div class="hero-chips">
+            <span class="chip">Tested Formulas</span>
+            <span class="chip">Beginner-Ready</span>
+            <span class="chip">Instant PDF</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-chips">
-        <span class="chip">Tested Formulas</span>
-        <span class="chip">Beginner-Ready</span>
-        <span class="chip">Instant PDF</span>
-      </div>
+    </div>
+
+    <div class="h-reveal" aria-hidden="true">
+      <p class="eyebrow">Made for Curious</p>
+      <h2>Less screen. More <span class="accent-italic">making</span>.</h2>
     </div>
   </section>
 
   <!-- ============ TRUST MARQUEE ============ -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Formulated in Thailand</span><span>Tested Only on Humans</span><span>Instant Digital Download</span><span>Made for Curious</span><span>Only Natural Ingredients</span><span>Small Batches</span><span>Beginner Friendly</span>
-      <span>Formulated in Thailand</span><span>Tested Only on Humans</span><span>Instant Digital Download</span><span>Made for Curious</span><span>Only Natural Ingredients</span><span>Small Batches</span><span>Beginner Friendly</span>
+      <span>Made for Curious</span><span>Screen-Free Time</span><span>Learn a New Skill</span><span>Tested Formulas</span><span>Real Ingredients</span><span>Made at Home</span><span>Beginner Friendly</span><span>Instant Digital Download</span>
+      <span>Made for Curious</span><span>Screen-Free Time</span><span>Learn a New Skill</span><span>Tested Formulas</span><span>Real Ingredients</span><span>Made at Home</span><span>Beginner Friendly</span><span>Instant Digital Download</span>
     </div>
   </div>
 
-  <!-- ============ INTRO ============ -->
-  <section class="section section--white">
-    <div class="container split">
-      <div class="reveal">
-        <p class="eyebrow">What is ARK Experience</p>
-        <h2 class="section-heading">Natural body care, <span class="accent-italic">demystified</span>.</h2>
-      </div>
-      <div class="reveal reveal-d1">
-        <p class="lead" style="margin-bottom: 24px;">DIY skincare content online can sometimes be overwhelming or misleading. ARK Experience is different: every guide teaches you the science in plain language, then hands you a human-tested, percentage-accurate formula you can follow to actually make a natural body care product you enjoy using.</p>
-        <p class="lead" style="margin-bottom: 36px;">No fear-based claims. No mystery steps. Just the knowledge to understand what goes on your skin — and full confidence in the product, because you made it.</p>
+  <!-- ============ 02 · PAINT (intro) ============ -->
+  <section class="paint">
+    <div class="container">
+      <p class="eyebrow">What is ARK Experience</p>
+      <p class="paint-text" data-paint>
+        Most of us spend the day staring at a screen
+        <span class="pimg"><img src="assets/why-beginners.jpg" alt="" loading="lazy" width="734" height="1200"></span>
+        — then unwind in front of another one. ARKE is the opposite: a hands-on skill you learn at your own kitchen table, turning natural ingredients
+        <span class="pimg"><img src="assets/guide-lip-balm.jpg" alt="" loading="lazy" width="833" height="1110"></span>
+        into body care you and your people actually <span class="accent-italic">use</span>.
+      </p>
+      <div class="paint-foot">
+        <p class="lead">Every guide teaches the science in plain language, then hands you a tested formula. No craft skills, no chemistry degree — just a fun, practical way to spend an evening, and something real to show for it.</p>
         <a href="about.html" class="text-link">More about ARK Experience <span>→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ============ FREE GUIDES ============ -->
-  <section class="section section--cream">
+  <!-- ============ 03 · WHY (pain points assemble) ============ -->
+  <section class="why" id="why">
+    <div class="cloudlayer why-clouds" aria-hidden="true">
+      <svg viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="cloudsWhy" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.008 0.016" numOctaves="5" seed="3" stitchTiles="stitch" result="noise"/>
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.42" result="c"/>
+            <feGaussianBlur in="c" stdDeviation="4"/>
+          </filter>
+          <linearGradient id="cloudsWhyFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+            <stop offset="0.5" stop-color="#fff" stop-opacity="0.45"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="1"/>
+          </linearGradient>
+          <mask id="cloudsWhyMask"><rect width="1200" height="420" fill="url(#cloudsWhyFade)"/></mask>
+        </defs>
+        <rect width="1200" height="420" filter="url(#cloudsWhy)" mask="url(#cloudsWhyMask)"/>
+      </svg>
+    </div>
+
+    <div class="why-head">
+      <div>
+        <p class="eyebrow">Sound familiar?</p>
+        <h2 class="why-title">Another evening lost to the <span class="accent-italic">scroll</span>?</h2>
+      </div>
+      <p class="why-note">Your hands have been on a keyboard or a phone all day. They're ready for something real.</p>
+    </div>
+
+    <div class="why-grid">
+      <article class="pcard">
+        <span class="pnum">01 <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M16 29V9"/><path d="M16 20c-5-1-8-4-8-9 5 1 8 4 8 9Z"/><path d="M16 15c5-1 8-4 8-9-5 1-8 4-8 9Z"/></svg></span>
+        <p>Eight hours at a laptop — then two more on your phone before bed.</p>
+      </article>
+      <article class="pcard">
+        <span class="pnum">02 <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M16 29V9"/><path d="M16 20c-5-1-8-4-8-9 5 1 8 4 8 9Z"/><path d="M16 15c5-1 8-4 8-9-5 1-8 4-8 9Z"/></svg></span>
+        <p>You want a hobby that's actually useful — not one more thing collecting dust.</p>
+      </article>
+      <article class="pcard">
+        <span class="pnum">03 <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M16 29V9"/><path d="M16 20c-5-1-8-4-8-9 5 1 8 4 8 9Z"/><path d="M16 15c5-1 8-4 8-9-5 1-8 4-8 9Z"/></svg></span>
+        <p>You'd love to know what's really in the products you use every day.</p>
+      </article>
+      <article class="pcard">
+        <span class="pnum">04 <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M16 29V9"/><path d="M16 20c-5-1-8-4-8-9 5 1 8 4 8 9Z"/><path d="M16 15c5-1 8-4 8-9-5 1-8 4-8 9Z"/></svg></span>
+        <p>You tried a DIY recipe online once. Nobody explained why it didn't work.</p>
+      </article>
+      <article class="pcard pcard--answer">
+        <p class="eyebrow">The ARKE way</p>
+        <h3>Put the phone down. Learn a skill you\'ll <span class="accent-italic">use</span> every day.</h3>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 04 · STATEMENT ============ -->
+  <section class="stmt" aria-label="Ingredients and ritual">
     <div class="container">
-      <div class="reveal" style="text-align: center; max-width: 680px; margin: 0 auto;">
-        <p class="eyebrow eyebrow--center">Free Guides</p>
-        <h2 class="section-heading">Start making. Start understanding.</h2>
+      <p class="stmt-line">On their own —</p>
+      <p class="stmt-line"><span class="sky">ingredients.</span></p>
+      <p class="stmt-line">Together —</p>
+      <p class="stmt-line"><span class="accent-italic sky">a ritual.</span></p>
+      <p class="stmt-caption">Every guide explains what each ingredient does and why it's there — so an evening of making turns into a skill you keep, and gifts your family and friends will actually use.</p>
+    </div>
+  </section>
+
+  <!-- ============ 05 · GUIDES ============ -->
+  <section class="gd" id="guides">
+    <div class="container gd-wrap">
+      <div class="gd-side">
+        <div class="gd-sticky">
+          <p class="eyebrow">Free guides</p>
+          <div class="gd-big" aria-hidden="true">02</div>
+          <h2 class="gd-title">Start making. Start <span class="accent-italic">understanding</span>.</h2>
+          <p class="lead">Two free guides to begin with — instant PDF, yours forever. No subscription, no app, no account.</p>
+          <a href="guides.html" class="text-link">Browse all guides <span>→</span></a>
+        </div>
       </div>
 
-      <div class="guides-grid">
-        <article class="guide-card reveal">
-          <a href="guide-beginners.html" class="card-media-link">
-            <div class="img-slot img-slot--dawn">
-              <img class="slot-photo" src="assets/guide-beginners.jpg" alt="Two women exploring a natural skincare guide on a laptop" loading="lazy">
-            </div>
+      <div class="gd-stack">
+        <article class="gcard" style="--i: 0">
+          <a href="guide-beginners.html" class="gcard-media" tabindex="-1" aria-hidden="true">
+            <img src="assets/guide-beginners.jpg" alt="" loading="lazy" width="1200" height="721">
           </a>
-          <div class="guide-card-body">
+          <div class="gcard-body">
+            <div class="gcard-top"><span>Guide 01</span><span class="dots"><i class="on"></i><i></i><i></i></span></div>
             <span class="badge">Free Guide</span>
-            <h3><a href="guide-beginners.html" class="card-title-link">Beginner's Guide to Natural Body Care</a></h3>
+            <h3><a href="guide-beginners.html">Beginner's Guide to Natural Body Care</a></h3>
             <p>Learn to read labels, understand what's really in your products, spot greenwashing — and take your first confident step into making your own.</p>
             <div class="meta"><span>16 pages</span><span>Instant PDF</span></div>
             <div class="card-links">
-              <a href="guide-beginners.html" class="text-link">Explore the guide <span>→</span></a>
-              <button type="button" class="text-link" data-download-modal data-guide="Beginner's Guide to Natural Body Care" data-desc="16 pages on reading labels, understanding ingredients, and taking your first step into making your own. Instant PDF, straight to your inbox.">Download the guide <span>→</span></button>
+              <a href="guide-beginners.html" class="text-link">Explore <span>→</span></a>
+              <button type="button" class="text-link" data-download-modal data-guide="Beginner's Guide to Natural Body Care" data-desc="16 pages on reading labels, understanding ingredients, and taking your first step into making your own. Instant PDF, straight to your inbox.">Download <span>→</span></button>
             </div>
           </div>
         </article>
 
-        <article class="guide-card reveal reveal-d1">
-          <a href="guide-lip-balm.html" class="card-media-link">
-            <div class="img-slot img-slot--golden">
-              <img class="slot-photo" src="assets/guide-lip-balm.jpg" alt="Two women holding natural lip balm tubes outdoors" loading="lazy">
-            </div>
+        <article class="gcard" style="--i: 1">
+          <a href="guide-lip-balm.html" class="gcard-media" tabindex="-1" aria-hidden="true">
+            <img src="assets/guide-lip-balm.jpg" alt="" loading="lazy" width="833" height="1110">
           </a>
-          <div class="guide-card-body">
+          <div class="gcard-body">
+            <div class="gcard-top"><span>Guide 02</span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span></div>
             <span class="badge">Free Guide</span>
-            <h3><a href="guide-lip-balm.html" class="card-title-link">Making Natural Lip Balm at Home</a></h3>
-            <p>One tested formula, explained ingredient by ingredient. Twenty minutes of your time, twenty tubes of lip balm — and the knowledge to customize it.</p>
+            <h3><a href="guide-lip-balm.html">Making Natural Lip Balm at Home</a></h3>
+            <p>One tested formula, explained ingredient by ingredient. Twenty minutes of your time, twenty tubes of lip balm — and the knowledge to customise it.</p>
             <div class="meta"><span>15 pages</span><span>20 tubes per batch</span></div>
             <div class="card-links">
-              <a href="guide-lip-balm.html" class="text-link">Explore the guide <span>→</span></a>
-              <button type="button" class="text-link" data-download-modal data-guide="Making Natural Lip Balm at Home" data-desc="One tested formula, 15 pages, and everything you need for your first batch. Instant PDF, straight to your inbox.">Download the guide <span>→</span></button>
+              <a href="guide-lip-balm.html" class="text-link">Explore <span>→</span></a>
+              <button type="button" class="text-link" data-download-modal data-guide="Making Natural Lip Balm at Home" data-desc="One tested formula, 15 pages, and everything you need for your first batch. Instant PDF, straight to your inbox.">Download <span>→</span></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="gcard" style="--i: 2">
+          <a href="guides.html" class="gcard-media" tabindex="-1" aria-hidden="true">
+            <video data-src="images/deodorant.mp4" muted loop playsinline preload="none"></video>
+          </a>
+          <div class="gcard-body">
+            <div class="gcard-top"><span>Go deeper</span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+            <span class="badge">4 paid guides</span>
+            <h3><a href="guides.html">Deodorant, shampoo bars, body butter &amp; oil infusions</a></h3>
+            <p>Four in-depth guides, one tested formula each — explained ingredient by ingredient, with the full method. Instant PDF, one-time payment, yours forever.</p>
+            <div class="meta"><span>Instant PDF</span><span>No subscription</span></div>
+            <div class="card-links">
+              <a href="guides.html" class="text-link">See all guides <span>→</span></a>
             </div>
           </div>
         </article>
@@ -130,58 +271,116 @@
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
-  <section class="section section--dark">
+  <!-- ============ 06 · HOW IT WORKS ============ -->
+  <section class="steps2">
     <div class="container">
-      <div class="reveal" style="text-align: center; max-width: 680px; margin: 0 auto;">
-        <p class="eyebrow eyebrow--center">How it works</p>
-        <h2 class="section-heading">From download to first batch.</h2>
+      <div class="steps2-head">
+        <div>
+          <p class="eyebrow">How it works</p>
+          <h2 class="section-heading">From download to <span class="accent-italic">first</span> batch.</h2>
+        </div>
       </div>
-      <div class="steps">
-        <div class="step-card reveal">
-          <span class="step-num">01</span>
+      <div class="steps2-line" aria-hidden="true"><span></span></div>
+      <div class="steps2-grid">
+        <div class="s2">
+          <div class="s2-num" aria-hidden="true">01</div>
           <h3>Download the guide</h3>
           <p>Leave your email and the PDF arrives in your inbox. Instant delivery, yours forever — no subscription, no app, no account.</p>
         </div>
-        <div class="step-card reveal reveal-d1">
-          <span class="step-num">02</span>
+        <div class="s2">
+          <div class="s2-num" aria-hidden="true">02</div>
           <h3>Understand the why</h3>
-          <p>Every ingredient explained in plain language: what it does, why it's there, and what happens if you change it. Science explained in simple words.</p>
+          <p>Every ingredient explained in plain language: what it does, why it's there, and what happens if you change it.</p>
         </div>
-        <div class="step-card reveal reveal-d2">
-          <span class="step-num">03</span>
+        <div class="s2">
+          <div class="s2-num" aria-hidden="true">03</div>
           <h3>Make your batch</h3>
-          <p>Follow a tested, percentage-accurate formula step by step. You don't need craft skills or a science degree — you need a thermometer and a scale.</p>
+          <p>Follow a tested formula step by step — no craft skills needed, just a thermometer and a scale. Then use it, gift it, and share it with the people you love.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ ABOUT TEASER ============ -->
-  <section class="section section--beige">
-    <div class="container split split--reverse">
-      <div class="reveal reveal-d1">
-        <div class="img-slot img-slot--earth">
-          <img class="slot-photo" src="assets/yana-portrait.jpg" alt="Yana whisking whipped body butter in her sunlit kitchen" loading="lazy">
+  <!-- ============ 07 · IN THE LAB (horizontal shelf) ============ -->
+  <section class="lab" id="lab">
+    <div class="lab-pin">
+      <div class="lab-track">
+        <div class="lab-intro">
+          <p class="eyebrow">In the lab</p>
+          <h2 class="lab-title">What you'll learn to <span class="accent-italic">make</span>.</h2>
+          <p>Five guides, five things to make with your own hands — each one tested and used daily in Phuket's heat, then explained ingredient by ingredient. Tap a card to explore.</p>
+          <div class="lab-progress" aria-hidden="true"><span></span></div>
         </div>
+
+        <a class="lab-card" href="guide-lip-balm.html">
+          <div class="lab-media"><video data-src="images/lip-balm.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+          <div class="lab-cap"><span class="status status--live">Free guide</span><h3>Lip balm</h3><p>Six ingredients. Twenty minutes. Twenty tubes.</p></div>
+        </a>
+        <a class="lab-card" href="guide-deodorant.html">
+          <div class="lab-media"><video data-src="images/deodorant.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+          <div class="lab-cap"><span class="status status--dev">Paid guide</span><h3>Deodorant</h3><p>The formula I reach for every morning.</p></div>
+        </a>
+        <a class="lab-card" href="guide-shampoo-bars.html">
+          <div class="lab-media"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of a round shampoo bar with a rosemary sprig, resting on clouds">
+          <defs>
+            <linearGradient id="barTopL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbf8f1"/><stop offset="1" stop-color="#e9e1cf"/></linearGradient>
+            <linearGradient id="barSideL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2d8c3"/><stop offset="1" stop-color="#cfc2a7"/></linearGradient>
+            <filter id="softL" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
+          </defs>
+          <rect width="400" height="500" fill="#c9dcf1"/>
+          <g fill="#fff" filter="url(#softL)" opacity="0.95">
+            <ellipse cx="70" cy="120" rx="80" ry="34"/><ellipse cx="330" cy="90" rx="90" ry="30"/>
+            <ellipse cx="80" cy="420" rx="120" ry="60"/><ellipse cx="320" cy="430" rx="130" ry="64"/><ellipse cx="200" cy="470" rx="190" ry="60"/>
+          </g>
+          <ellipse cx="200" cy="352" rx="120" ry="22" fill="#6d86a6" opacity="0.25" filter="url(#softL)"/>
+          <path d="M92 270 v38 a108 40 0 0 0 216 0 v-38 z" fill="url(#barSideL)"/>
+          <ellipse cx="200" cy="270" rx="108" ry="40" fill="url(#barTopL)"/>
+          <ellipse cx="200" cy="270" rx="78" ry="26" fill="none" stroke="#d9cdb3" stroke-width="2"/>
+          <text x="200" y="276" text-anchor="middle" font-family="Oswald, sans-serif" font-size="16" letter-spacing="5" fill="#b3a481">ARKE</text>
+          <g stroke="#5d7a52" stroke-width="2.4" stroke-linecap="round" fill="none">
+            <path d="M250 236 C 280 200, 300 170, 318 130"/>
+          </g>
+          <g fill="#6f8f63">
+            <ellipse cx="262" cy="214" rx="4" ry="13" transform="rotate(-50 262 214)"/><ellipse cx="276" cy="222" rx="4" ry="13" transform="rotate(40 276 222)"/>
+            <ellipse cx="276" cy="190" rx="4" ry="13" transform="rotate(-45 276 190)"/><ellipse cx="292" cy="196" rx="4" ry="13" transform="rotate(45 292 196)"/>
+            <ellipse cx="292" cy="164" rx="4" ry="12" transform="rotate(-40 292 164)"/><ellipse cx="306" cy="168" rx="4" ry="12" transform="rotate(50 306 168)"/>
+            <ellipse cx="306" cy="140" rx="3.5" ry="11" transform="rotate(-35 306 140)"/><ellipse cx="319" cy="142" rx="3.5" ry="11" transform="rotate(55 319 142)"/>
+          </g>
+        </svg></div>
+          <div class="lab-cap"><span class="status status--dev">Paid guide</span><h3>Shampoo bars</h3><p>Two tested variations. Not soap.</p></div>
+        </a>
+        <a class="lab-card" href="guide-body-butter.html">
+          <div class="lab-media"><video data-src="images/body-butter.mp4" poster="images/body-butter-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+          <div class="lab-cap"><span class="status status--dev">Paid guide</span><h3>Whipped body butter</h3><p>Whipped until it's light as a cloud.</p></div>
+        </a>
+        <a class="lab-card" href="guide-oil-infusions.html">
+          <div class="lab-media"><video data-src="images/body-oil.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+          <div class="lab-cap"><span class="status status--dev">Paid guide</span><h3>Oil infusions</h3><p>Botanicals, infused slowly — for hair and body.</p></div>
+        </a>
       </div>
-      <div class="reveal">
-        <p class="eyebrow">The maker</p>
-        <h2 class="section-heading" style="margin-bottom: 28px;">Hi, I'm <span class="accent-italic">Yana</span>.</h2>
-        <p class="lead" style="margin-bottom: 20px;">I'm a Marketing and Automation Lead at an international company, and I work in front of a screen all day. A few years ago I craved something tactile — something real I could make with my hands to switch my mind and eyes away from staring at a laptop or phone. That curiosity led me from a candle and soap workshop in Bangkok to fully formulating natural body care that I, my friends, and my family now use every single day.</p>
-        <p class="lead" style="margin-bottom: 36px;">ARK Experience is where I share what I've learned: formulas tested in my own kitchen, explained the way I wish someone had explained them to me.</p>
+    </div>
+  </section>
+
+  <!-- ============ 08 · THE MAKER ============ -->
+  <section class="maker">
+    <h2 class="maker-title">
+      <span class="mk-l">Hi, I'm</span>
+      <span class="maker-arch"><img src="assets/yana-portrait.jpg" alt="Yana whisking whipped body butter in her sunlit kitchen" loading="lazy" width="1100" height="900"></span>
+      <span class="mk-r"><span class="accent-italic">Yana</span>.</span>
+    </h2>
+    <div class="maker-cols">
+      <p class="lead">I'm a Marketing and Automation Lead, and I work in front of a screen all day. A few years ago I craved something tactile — something real I could make with my hands. That curiosity led me from a candle and soap workshop in Bangkok to formulating natural body care that I, my friends and my family now use every single day.</p>
+      <div>
+        <p class="lead" style="margin-bottom: 30px;">ARK Experience is where I share what I've learned: formulas tested in my own kitchen, explained the way I wish someone had explained them to me.</p>
         <a href="about.html" class="text-link">Read the full story <span>→</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ============ QUOTE + EMAIL CAPTURE ============ -->
+  <!-- ============ 09 · QUOTE + EMAIL CAPTURE ============ -->
   <section class="section section--dark" id="free-guide">
     <div class="container">
-      <div class="quote-band reveal" style="margin-bottom: clamp(70px, 10vw, 120px);">
-        <span class="quote-mark">“</span>
-        <blockquote>The best skincare is the kind you <em>made</em>.</blockquote>
-      </div>
+      <p class="q-text" data-paint>The best skincare is the kind you <span class="accent-italic">understand</span>.</p>
 
       <div class="capture-panel reveal">
         <h2>Start with the free guide.</h2>
@@ -196,11 +395,24 @@
     </div>
   </section>
 
+  <!-- ============ 10 · CLOSING LINE ============ -->
+  <section class="closer">
+    <p class="closer-big">
+      <span class="ln"><span class="in">Your first batch</span></span>
+      <span class="ln"><span class="in">doesn't have to be</span></span>
+      <span class="ln"><span class="in accent-italic">perfect.</span></span>
+    </p>
+    <p class="closer-small">It just has to be yours and safe.</p>
+    <a href="#free-guide" class="btn btn--primary">Get the Free Guide <span class="arrow">→</span></a>
+  </section>
+
+  </main>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience"></a>
+        <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience" loading="lazy" width="140" height="30"></a>
         <p>Digital guides for natural body care you can make at home. Formulated and tested in Thailand.</p>
         <p class="tagline">Your skin. Your ritual. Your recipe.</p>
       </div>
@@ -230,6 +442,13 @@
     </div>
   </footer>
 
+  <!-- ============ FLOATING CTA ============ -->
+  <a href="#free-guide" class="dock" aria-label="Get the free guide">
+    <span class="dock-dot" aria-hidden="true"></span>
+    <span>Free guide<span class="dock-label-long"> · Instant PDF</span></span>
+    <span class="dock-btn">Get it →</span>
+  </a>
+
   <!-- ============ DOWNLOAD MODAL ============ -->
   <div class="modal" id="download-modal" role="dialog" aria-modal="true" aria-labelledby="download-modal-title" aria-hidden="true">
     <div class="modal-backdrop" data-modal-close></div>
@@ -248,5 +467,10 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site-motion.js" defer></script>
+  <script src="home.js" defer></script>
 </body>
 </html>

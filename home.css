@@ -1,0 +1,361 @@
+/* ============================================================
+   ARKE — Home prototype (v2)
+   Scroll-scene layer on top of styles.css. Same "Air" system:
+   sky gradients, frosted glass, compressed Oswald display,
+   Analogue italic accent, single Action Blue for interaction.
+   ============================================================ */
+
+
+:root { --display-xl: min(11.2vw, 16svh); }
+
+/* ============================================================
+   01 · HERO — "Your [jar] ritual." video expands on scroll
+   ============================================================ */
+.h-hero {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(128px, 17svh, 160px) var(--gutter) 40px;
+  color: var(--cloud);
+  background: linear-gradient(180deg, #5e87b8 0%, #7fa3cf 42%, #a6c3e4 82%, #c9dcf1 100%);
+  overflow: hidden;
+}
+
+.h-hero .cloudlayer { z-index: 0; }
+
+/* Full-bleed video, clipped by JS to the arch slot in the headline */
+.h-stage { position: absolute; inset: 0; z-index: 1; display: none; }
+.js .h-stage { display: block; clip-path: inset(50% 50% 50% 50% round 999px); }
+.h-stage video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; transform: scale(1.18); transform-origin: 50% 50%; }
+.h-stage video:not(.is-tall) { object-position: 50% 50%; }
+.h-stage-shade {
+  position: absolute; inset: 0; opacity: 0;
+  background: linear-gradient(180deg, rgba(22, 33, 46, 0.12) 0%, rgba(22, 33, 46, 0.5) 100%);
+}
+
+.h-inner { position: relative; z-index: 2; width: 100%; max-width: 1500px; }
+
+.h-tagline {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 30px);
+  margin-bottom: 18px;
+}
+.h-tagline .in, .h-title .in, .h-meta .in { display: inline-block; }
+
+.h-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--display-xl);
+  line-height: 0.9;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  text-shadow: 0 10px 40px rgba(46, 72, 104, 0.18);
+}
+.h-title .ln { display: flex; justify-content: center; align-items: center; gap: 0.14em; white-space: nowrap; }
+.h-title .accent-italic { font-size: 0.86em; line-height: 1; padding: 0 0.04em 0.06em; }
+
+/* The arch window. Without JS it shows the poster; with JS the stage video sits exactly here. */
+.h-slot {
+  display: inline-block;
+  flex: none;
+  width: 1.3em;
+  height: 0.8em;
+  border-radius: 999px;
+  background: url('images/body-butter-poster.jpg') center 62% / cover;
+  box-shadow: 0 20px 50px -20px rgba(22, 33, 46, 0.45);
+}
+.js .h-slot { background: none; box-shadow: none; }
+
+.h-meta { margin-top: clamp(20px, 3svh, 34px); }
+.h-meta .hero-sub { margin: 0 auto; max-width: 660px; color: rgba(255, 255, 255, 0.92); font-size: clamp(14.5px, 1.25vw, 17px); line-height: 1.65; }
+.h-meta .hero-actions { margin-top: clamp(18px, 3svh, 30px); justify-content: center; }
+.h-meta .hero-chips { margin-top: clamp(14px, 2.4svh, 24px); justify-content: center; }
+
+/* Text that appears once the video fills the screen */
+.h-reveal {
+  position: absolute; inset: 0; z-index: 3;
+  display: none;
+  flex-direction: column; align-items: center; justify-content: flex-end;
+  padding: 0 var(--gutter) clamp(56px, 10svh, 110px);
+  text-align: center; color: var(--cloud);
+  pointer-events: none;
+}
+.motion .h-reveal { display: flex; opacity: 0; visibility: hidden; }
+.h-reveal .eyebrow { color: var(--cloud); justify-content: center; }
+.h-reveal .eyebrow::before, .h-reveal .eyebrow::after { background: rgba(255, 255, 255, 0.75); }
+.h-reveal h2 {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(44px, 7.4vw, 130px); line-height: 0.92;
+  text-shadow: 0 12px 50px rgba(22, 33, 46, 0.35);
+}
+.h-reveal h2 .accent-italic { font-size: 0.9em; }
+
+/* ============================================================
+   02 · PAINT — words fill in as you read
+   ============================================================ */
+.paint { background: var(--cloud); padding: var(--section-pad) var(--gutter); }
+.paint-text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(30px, 4.5vw, 70px);
+  line-height: 1.08;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  max-width: 1180px;
+}
+.paint-text .accent-italic { font-size: 0.95em; }
+.paint-foot {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end;
+  margin-top: clamp(40px, 6vw, 72px); max-width: 1180px;
+  padding-top: 32px; border-top: 1px solid rgba(22, 33, 46, 0.1);
+}
+.paint-foot .lead { max-width: 620px; }
+
+/* ============================================================
+   03 · WHY — pain points fly in and assemble over clouds
+   ============================================================ */
+.why {
+  position: relative;
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 110px var(--gutter) 60px;
+  background: linear-gradient(170deg, #4f77a8 0%, var(--sky-deep) 58%, #36506f 100%);
+  color: var(--cloud);
+  overflow: hidden;
+}
+.why .why-clouds { position: absolute; top: auto; left: 0; right: 0; bottom: -2%; height: 48%; z-index: 0; }
+.why .why-clouds svg { animation-duration: 95s; }
+.why-head, .why-grid { position: relative; z-index: 1; }
+.why-head { max-width: 1240px; margin: 0 auto 36px; width: 100%; display: flex; align-items: end; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.why .eyebrow { color: var(--cloud); }
+.why .eyebrow::before { background: rgba(255, 255, 255, 0.7); }
+.why-title {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(40px, 6vw, 96px); line-height: 0.92; max-width: 900px;
+}
+.why-title .accent-italic { color: #cfe2f8; font-size: 0.9em; }
+.why-note { max-width: 300px; font-size: 14px; color: rgba(255, 255, 255, 0.78); }
+
+.why-grid {
+  max-width: 1240px; width: 100%; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+}
+.pcard {
+  position: relative;
+  min-height: clamp(150px, 22svh, 210px);
+  padding: 24px 26px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+  will-change: transform;
+}
+.pcard p { font-size: clamp(15px, 1.3vw, 18px); line-height: 1.5; color: rgba(255, 255, 255, 0.94); }
+.pnum { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: space-between; }
+.pnum svg { width: 26px; height: 26px; color: rgba(255, 255, 255, 0.75); }
+.pcard--answer {
+  grid-column: span 2;
+  background: var(--cloud); color: var(--ink); border-color: var(--cloud);
+  box-shadow: 0 30px 70px -30px rgba(13, 32, 58, 0.55);
+}
+.pcard--answer .eyebrow { color: var(--action-blue); margin-bottom: 0; }
+.pcard--answer .eyebrow::before { background: var(--action-blue); }
+.pcard--answer h3 {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(28px, 3.3vw, 52px); line-height: 0.95;
+}
+.pcard--answer h3 .accent-italic { color: var(--action-blue); font-size: 0.92em; }
+
+/* ============================================================
+   04 · STATEMENT — staggered poster type on cream
+   ============================================================ */
+.stmt { background: var(--cream); padding: var(--section-pad) var(--gutter); overflow: hidden; }
+.stmt-line {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(50px, 9.4vw, 170px); line-height: 0.92; letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.stmt-line:nth-child(2) { text-align: right; }
+.stmt-line:nth-child(3) { padding-left: 12%; margin-top: 0.12em; }
+.stmt-line:nth-child(4) { text-align: right; }
+.stmt .sky { color: var(--sky-mid); }
+.stmt .accent-italic { font-size: 1.12em; }
+.stmt-caption {
+  max-width: 420px; margin-top: clamp(32px, 5vw, 60px);
+  font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+}
+
+/* ============================================================
+   05 · GUIDES — sticky counter + stacking cards
+   ============================================================ */
+.gd { background: var(--sky-mist); padding: var(--section-pad) var(--gutter); }
+.gd-wrap { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.gd-side { align-self: stretch; }
+.gd-sticky { position: sticky; top: 120px; }
+.gd-big {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(120px, 17vw, 280px); line-height: 0.78; letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.gd-title {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(30px, 3.4vw, 52px); line-height: 0.95; margin: 22px 0 18px;
+}
+.gd-title .accent-italic { font-size: 0.92em; }
+.gd-sticky .lead { font-size: 15.5px; margin-bottom: 28px; max-width: 420px; }
+
+.gd-stack { display: flex; flex-direction: column; gap: 28px; padding-bottom: 6vh; }
+.gcard {
+  position: sticky;
+  top: calc(110px + var(--i, 0) * 26px);
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  min-height: min(440px, calc(100svh - 200px));
+  background: var(--cloud);
+  border-radius: 22px;
+  border: 1px solid rgba(66, 97, 136, 0.1);
+  box-shadow: 0 30px 60px -35px rgba(22, 33, 46, 0.35);
+  overflow: hidden;
+  transform-origin: 50% 0;
+}
+.gcard-media { position: relative; overflow: hidden; background: var(--sky-light); }
+.gcard-media img, .gcard-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gcard-body { padding: clamp(24px, 2.6vw, 36px); display: flex; flex-direction: column; gap: 14px; }
+.gcard-top { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); }
+.dots { display: inline-flex; gap: 5px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(22, 33, 46, 0.15); }
+.dots i.on { background: var(--action-blue); }
+.gcard .badge {
+  align-self: flex-start;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--action-blue);
+  border: 1px solid rgba(43, 127, 255, 0.45);
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+}
+.gcard h3 { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: clamp(24px, 2.2vw, 34px); line-height: 1; }
+.gcard h3 a { color: inherit; text-decoration: none; }
+.gcard h3 a:hover { color: var(--action-blue); }
+.gcard p { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); }
+.gcard .meta { display: flex; gap: 18px; font-size: 12px; color: var(--ink-soft); }
+.gcard .meta span::before { content: '✦ '; color: var(--sky); }
+.gcard .card-links { margin-top: auto; }
+.gcard .badge--soft { background: var(--sky-mist); color: var(--sky-deep); border-color: transparent; }
+
+/* ============================================================
+   06 · STEPS — outline numbers fill as the line draws
+   ============================================================ */
+.steps2 { background: var(--cloud); padding: var(--section-pad) var(--gutter); }
+.steps2-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; margin-bottom: clamp(40px, 6vw, 80px); }
+.steps2-head .section-heading { margin: 0; max-width: 760px; }
+.steps2-line { height: 1px; background: rgba(22, 33, 46, 0.1); margin-bottom: 40px; }
+.steps2-line span { display: block; height: 100%; background: var(--action-blue); transform-origin: 0 50%; }
+.steps2-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 56px); }
+.s2-num {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(90px, 11vw, 170px); line-height: 0.8; letter-spacing: -0.03em;
+  color: var(--ink);
+  -webkit-text-stroke: 1.5px var(--ink);
+  margin-bottom: 26px;
+}
+.motion .s2-num { color: transparent; }
+.s2 h3 { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: clamp(22px, 2vw, 28px); margin-bottom: 10px; }
+.s2 p { font-size: 15px; line-height: 1.7; color: var(--ink-soft); max-width: 360px; }
+
+/* ============================================================
+   07 · LAB — horizontal shelf of formula videos
+   ============================================================ */
+.lab {
+  position: relative;
+  background: linear-gradient(170deg, #4f77a8 0%, var(--sky-deep) 58%, #36506f 100%);
+  color: var(--cloud);
+  overflow: hidden;
+}
+.lab-pin { min-height: 100svh; display: flex; align-items: center; padding: 100px 0 50px; }
+.lab-track {
+  display: flex; align-items: center; gap: clamp(16px, 2vw, 28px);
+  padding: 0 var(--gutter);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none;
+  width: 100%;
+}
+.lab-track::-webkit-scrollbar { display: none; }
+.lab--pinned .lab-track { overflow: visible; width: max-content; scroll-snap-type: none; }
+.lab-intro { flex: none; width: min(440px, 80vw); padding-right: clamp(10px, 3vw, 50px); scroll-snap-align: start; }
+.lab .eyebrow { color: var(--cloud); }
+.lab .eyebrow::before { background: rgba(255, 255, 255, 0.7); }
+.lab-title { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: clamp(44px, 6vw, 96px); line-height: 0.9; margin-bottom: 22px; }
+.lab-title .accent-italic { color: #cfe2f8; font-size: 0.9em; }
+.lab-intro p { color: rgba(255, 255, 255, 0.82); font-size: 15px; line-height: 1.7; max-width: 380px; }
+.lab-progress { margin-top: 30px; height: 2px; width: 180px; background: rgba(255, 255, 255, 0.2); border-radius: 2px; overflow: hidden; }
+.lab-progress span { display: block; height: 100%; width: 100%; background: var(--cloud); transform: scaleX(0); transform-origin: 0 50%; }
+
+.lab-card { flex: none; width: min(300px, 70vw, calc((100svh - 320px) * 0.5625)); min-width: 220px; scroll-snap-align: center; }
+.lab-media {
+  position: relative; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden;
+  background: linear-gradient(180deg, #b9c9d6, #dfe9f3);
+  box-shadow: 0 30px 60px -30px rgba(10, 22, 40, 0.6);
+}
+.lab-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lab-card { color: inherit; text-decoration: none; }
+.lab-card .lab-media > * { transition: transform 1s var(--ease-out); }
+.lab-card:hover .lab-media > * { transform: scale(1.05); }
+.lab-media svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lab-cap { padding: 16px 4px 0; }
+.lab-card h3 { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: 24px; line-height: 1; margin: 10px 0 6px; }
+.lab-card p { font-size: 13.5px; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+.status {
+  display: inline-block; font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 100px; border: 1px solid rgba(255, 255, 255, 0.45); color: rgba(255, 255, 255, 0.85);
+}
+.status--live { background: var(--cloud); color: var(--sky-deep); border-color: var(--cloud); }
+.status--dev { background: rgba(255, 255, 255, 0.16); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+/* ============================================================
+   08 · MAKER — "Hi, I'm [portrait] Yana."
+   ============================================================ */
+.maker { background: var(--cream); padding: var(--section-pad) var(--gutter); overflow: hidden; }
+.maker-title {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(48px, 9.6vw, 170px); line-height: 0.9; letter-spacing: -0.01em;
+  display: flex; align-items: center; justify-content: center; gap: 0.16em; flex-wrap: wrap;
+  text-align: center;
+}
+.maker-title .accent-italic { font-size: 0.92em; }
+.maker-arch { display: inline-block; width: 1.45em; height: 0.84em; border-radius: 999px; overflow: hidden; position: relative; flex: none; }
+.maker-arch img { position: absolute; left: 0; top: -12%; width: 100%; height: 124%; object-fit: cover; object-position: center 35%; }
+.maker-cols { max-width: 1100px; margin: clamp(44px, 6vw, 80px) auto 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 60px); }
+.maker-cols .lead { font-size: 16px; }
+
+
+
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 899px) {
+  .why { min-height: 0; padding: 100px var(--gutter) 90px; }
+  .why-grid { grid-template-columns: 1fr; }
+  .pcard--answer { grid-column: auto; }
+  .why .why-clouds { height: 30%; }
+  .gd-wrap { grid-template-columns: 1fr; }
+  .gd-sticky { position: static; }
+  .gd-big { font-size: clamp(110px, 34vw, 180px); }
+  .gcard { position: relative; top: auto; grid-template-columns: 1fr; min-height: 0; }
+  .gcard-media { aspect-ratio: 16 / 10; }
+  .steps2-grid { grid-template-columns: 1fr; }
+  .maker-cols, .paint-foot { grid-template-columns: 1fr; }
+  .lab-pin { padding: 90px 0 70px; }
+}
+@media (max-width: 600px) {
+  :root { --display-xl: min(13vw, 17svh); }
+  .h-hero { padding-top: 116px; }
+  .h-meta .hero-chips { display: none; }
+  .h-meta .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
+}
+

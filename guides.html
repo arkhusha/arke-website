@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guides — ARK Experience</title>
-  <meta name="description" content="Free digital guides for natural body care you can make at home. Tested formulas, plain-language science, beginner-safe methods.">
+  <title>Guides & Formulas — ARK Experience</title>
+  <meta name="description" content="The ARKE library: digital guides for natural body care you can make at home. Tested formulas, plain-language science, beginner-safe methods.">
+  <script>
+    document.documentElement.classList.add('js');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/analogue-italic-webfont.ttf" as="font" type="font/ttf" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="pages.css">
 </head>
 <body>
 
   <header class="site-header">
-    <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience"></a>
+    <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience" width="140" height="30"></a>
     <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     <nav class="nav">
       <a href="guides.html" class="active">Guides</a>
@@ -23,81 +30,176 @@
     </nav>
   </header>
 
-  <!-- ============ PAGE HERO ============ -->
-  <section class="page-hero">
-    <p class="eyebrow">The Library</p>
-    <h1>Guides & <span class="accent-italic">formulas</span></h1>
-    <p class="hero-sub" style="max-width: 560px; margin-left: auto; margin-right: auto;">Every guide is a complete education: the science in plain language, a tested formula with exact percentages, and a method you can follow to make something great for your skin.</p>
-  </section>
+  <main>
 
-  <!-- ============ GUIDES GRID ============ -->
-  <section class="section section--cream" style="padding-top: clamp(56px, 8vw, 100px);">
-    <div class="container">
-      <div class="guides-grid" style="margin-top: 0;">
-        <article class="guide-card reveal">
-          <a href="guide-beginners.html" class="card-media-link">
-            <div class="img-slot img-slot--dawn">
-              <img class="slot-photo" src="assets/guide-beginners.jpg" alt="Two women exploring a natural skincare guide on a laptop" loading="lazy">
-            </div>
-          </a>
-          <div class="guide-card-body">
-            <span class="badge">Free Guide</span>
-            <h3><a href="guide-beginners.html" class="card-title-link">Beginner's Guide to Natural Body Care</a></h3>
-            <p>The place to start. Learn to read ingredient labels, understand what "natural" actually means, spot greenwashing, and discover what it takes to make your own body care at home.</p>
-            <div class="meta"><span>16 pages</span><span>Instant PDF</span></div>
-            <div class="card-links">
-              <a href="guide-beginners.html" class="text-link">Explore the guide <span>→</span></a>
-              <button type="button" class="text-link" data-download-modal data-guide="Beginner's Guide to Natural Body Care" data-desc="16 pages on reading labels, understanding ingredients, and taking your first step into making your own. Instant PDF, straight to your inbox.">Download the guide <span>→</span></button>
-            </div>
-          </div>
-        </article>
+  <!-- ============ HERO ============ -->
+  <section class="p-hero" data-hero aria-labelledby="page-title">
+    <div class="cloudlayer" aria-hidden="true">
+      <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="cloudsHero" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0090 0.013" numOctaves="5" seed="22" stitchTiles="stitch" result="noise"/>
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.5 -0.4" result="c"/>
+            <feGaussianBlur in="c" stdDeviation="4.5"/>
+          </filter>
+          <linearGradient id="cloudsHeroFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.15"/>
+            <stop offset="0.55" stop-color="#fff" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0.9"/>
+          </linearGradient>
+          <mask id="cloudsHeroMask"><rect width="1200" height="520" fill="url(#cloudsHeroFade)"/></mask>
+        </defs>
+        <rect width="1200" height="520" filter="url(#cloudsHero)" mask="url(#cloudsHeroMask)"/>
+      </svg>
+    </div>
 
-        <article class="guide-card reveal reveal-d1">
-          <a href="guide-lip-balm.html" class="card-media-link">
-            <div class="img-slot img-slot--golden">
-              <img class="slot-photo" src="assets/guide-lip-balm.jpg" alt="Two women holding natural lip balm tubes outdoors" loading="lazy">
-            </div>
-          </a>
-          <div class="guide-card-body">
-            <span class="badge">Free Guide</span>
-            <h3><a href="guide-lip-balm.html" class="card-title-link">Making Natural Lip Balm at Home</a></h3>
-            <p>Your first real make. One tested formula explained ingredient by ingredient, a full step-by-step method, and everything you need to know about temperature, filling, and storage.</p>
-            <div class="meta"><span>15 pages</span><span>20 tubes per batch</span></div>
-            <div class="card-links">
-              <a href="guide-lip-balm.html" class="text-link">Explore the guide <span>→</span></a>
-              <button type="button" class="text-link" data-download-modal data-guide="Making Natural Lip Balm at Home" data-desc="One tested formula, 15 pages, and everything you need for your first batch. Instant PDF, straight to your inbox.">Download the guide <span>→</span></button>
-            </div>
-          </div>
-        </article>
-      </div>
+    <p class="eyebrow">The library</p>
+    <h1 class="p-title" id="page-title">
+      <span class="p-ln"><span class="in">Guides</span> <span class="arch"><img src="assets/inside-every-guide.jpg" alt="" width="900" height="1200"></span> <span class="in">&amp;</span></span>
+      <span class="p-ln"><span class="in accent-italic">formulas.</span></span>
+    </h1>
+    <p class="hero-sub">Every guide is a complete education: the science in plain language, a tested formula with exact percentages, and a method you can follow to make something great for your skin.</p>
+    <div class="hero-actions">
+      <a href="#library" class="btn btn--cloud">See the library <span class="arrow">↓</span></a>
+      <a href="#free-guide" class="btn btn--ghost-light">Start free</a>
     </div>
   </section>
 
-  <!-- ============ WHAT'S INSIDE EVERY GUIDE ============ -->
-  <section class="section section--white">
-    <div class="container split">
-      <div class="reveal">
-        <p class="eyebrow">The ARKE Standard</p>
-        <h2 class="section-heading" style="margin-bottom: 12px;">What's inside <span class="accent-italic">every</span> guide.</h2>
-        <ul class="feature-list">
-          <li><span><strong>A formula, not just a recipe.</strong> Exact percentages and batch weights, so you can scale up or down and the result stays the same.</span></li>
-          <li><span><strong>The why behind every ingredient.</strong> What it does, why it's in the formula, and what changes if you swap it.</span></li>
-          <li><span><strong>A Key Takeaway on every page.</strong> The one thing to remember, so the knowledge actually sticks.</span></li>
-          <li><span><strong>Tested in real life.</strong> Every formula is made and used daily — by me, my family, and my friends, in Thailand's year-round heat.</span></li>
-          <li><span><strong>Beginner-safe methods.</strong> Written for your very first batch. If a step matters, it's explained — never assumed.</span></li>
-        </ul>
+  <!-- ============ INDEX ============ -->
+  <section class="idx" id="library">
+    <div class="container">
+      <div class="idx-head">
+        <div>
+          <p class="eyebrow">All guides</p>
+          <h2 class="section-heading">Two free. Four <span class="accent-italic">in-depth</span>.</h2>
+        </div>
+        <p class="lead">Start with the free guides, then go deeper. Every paid guide is one tested formula — instant PDF, one-time payment, yours forever.</p>
       </div>
-      <div class="reveal reveal-d1">
-        <div class="img-slot img-slot--earth">
-          <img class="slot-photo" src="assets/inside-every-guide.jpg" alt="Natural body care ingredients and tools laid out" loading="lazy">
+
+      <ol class="idx-list">
+        <li class="idx-row" data-preview="beg">
+          <span class="idx-num">01</span>
+          <div class="idx-main">
+            <a class="idx-title" href="guide-beginners.html">Beginner's Guide to Natural Body Care</a>
+            <p class="idx-desc">The place to start. Learn to read ingredient labels, understand what "natural" actually means, spot greenwashing, and discover what it takes to make your own body care at home.</p>
+            <div class="idx-thumb"><img src="assets/guide-beginners.jpg" alt="" loading="lazy" width="1200" height="721"></div>
+          </div>
+          <div class="idx-side">
+            <span class="idx-status">Free · 16 pages</span>
+            <div class="idx-actions">
+              <a href="guide-beginners.html" class="text-link">Explore <span>→</span></a>
+              <button type="button" class="text-link" data-download-modal data-guide="Beginner's Guide to Natural Body Care" data-desc="16 pages on reading labels, understanding ingredients, and taking your first step into making your own. Instant PDF, straight to your inbox.">Download <span>→</span></button>
+            </div>
+          </div>
+        </li>
+
+        <li class="idx-row" data-preview="lip">
+          <span class="idx-num">02</span>
+          <div class="idx-main">
+            <a class="idx-title" href="guide-lip-balm.html">Making Natural Lip Balm at Home</a>
+            <p class="idx-desc">Your first real make. One tested formula explained ingredient by ingredient, a full step-by-step method, and everything you need to know about temperature, filling, and storage.</p>
+            <div class="idx-thumb"><img src="assets/guide-lip-balm.jpg" alt="" loading="lazy" width="833" height="1110"></div>
+          </div>
+          <div class="idx-side">
+            <span class="idx-status">Free · 15 pages</span>
+            <div class="idx-actions">
+              <a href="guide-lip-balm.html" class="text-link">Explore <span>→</span></a>
+              <button type="button" class="text-link" data-download-modal data-guide="Making Natural Lip Balm at Home" data-desc="One tested formula, 15 pages, and everything you need for your first batch. Instant PDF, straight to your inbox.">Download <span>→</span></button>
+            </div>
+          </div>
+        </li>
+
+        <li class="idx-row" data-preview="deo">
+          <span class="idx-num">03</span>
+          <div class="idx-main">
+            <a class="idx-title" href="guide-deodorant.html">Natural Deodorant</a>
+            <p class="idx-desc">The formula I reach for every morning, adjusted for Phuket's year-round heat — baking-soda-free, and explained ingredient by ingredient.</p>
+            <div class="idx-thumb"><video data-src="images/deodorant.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+          </div>
+          <div class="idx-side">
+            <span class="idx-status idx-status--paid">Paid guide</span>
+            <div class="idx-actions"><a href="guide-deodorant.html" class="text-link">Explore <span>→</span></a></div>
+          </div>
+        </li>
+
+        <li class="idx-row">
+          <span class="idx-num">04</span>
+          <div class="idx-main">
+            <a class="idx-title" href="guide-shampoo-bars.html">Shampoo Bars</a>
+            <p class="idx-desc">A solid shampoo that isn't soap. Two tested variations — Rosemary &amp; Calendula, and a tropical Mango bar — explained phase by phase.</p>
+          </div>
+          <div class="idx-side">
+            <span class="idx-status idx-status--paid">Paid guide</span>
+            <div class="idx-actions"><a href="guide-shampoo-bars.html" class="text-link">Explore <span>→</span></a></div>
+          </div>
+        </li>
+
+        <li class="idx-row" data-preview="butter">
+          <span class="idx-num">05</span>
+          <div class="idx-main">
+            <a class="idx-title" href="guide-body-butter.html">Whipped Body Butter</a>
+            <p class="idx-desc">Whipped until it's light as a cloud — the science of butters, oils and wax, and the cooling-and-whipping technique that makes the texture.</p>
+            <div class="idx-thumb"><img src="images/body-butter-poster.jpg" alt="" loading="lazy" width="720" height="1280"></div>
+          </div>
+          <div class="idx-side">
+            <span class="idx-status idx-status--paid">Paid guide</span>
+            <div class="idx-actions"><a href="guide-body-butter.html" class="text-link">Explore <span>→</span></a></div>
+          </div>
+        </li>
+
+        <li class="idx-row" data-preview="oil">
+          <span class="idx-num">06</span>
+          <div class="idx-main">
+            <a class="idx-title" href="guide-oil-infusions.html">Oil Infusions for Hair &amp; Body</a>
+            <p class="idx-desc">Botanicals, infused slowly into oil — two methods, proper drying and storage, and rituals for hair and body.</p>
+            <div class="idx-thumb"><video data-src="images/body-oil.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+          </div>
+          <div class="idx-side">
+            <span class="idx-status idx-status--paid">Paid guide</span>
+            <div class="idx-actions"><a href="guide-oil-infusions.html" class="text-link">Explore <span>→</span></a></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="idx-preview" aria-hidden="true">
+      <img data-key="beg" src="assets/guide-beginners.jpg" alt="" loading="lazy">
+      <img data-key="lip" src="assets/guide-lip-balm.jpg" alt="" loading="lazy">
+      <video data-key="deo" data-lazy="images/deodorant.mp4" muted loop playsinline preload="none"></video>
+      <img data-key="butter" src="images/body-butter-poster.jpg" alt="" loading="lazy">
+      <video data-key="oil" data-lazy="images/body-oil.mp4" muted loop playsinline preload="none"></video>
+    </div>
+  </section>
+
+  <!-- ============ THE ARKE STANDARD ============ -->
+  <section class="std">
+    <div class="container std-wrap">
+      <div class="std-side">
+        <div class="std-sticky">
+          <div class="std-media">
+            <img src="assets/inside-every-guide.jpg" alt="Natural body care ingredients and tools laid out" loading="lazy" width="900" height="1200">
+            <span class="std-count" aria-hidden="true">01 / 05</span>
+          </div>
         </div>
       </div>
+      <div>
+        <div class="std-head">
+          <p class="eyebrow">The ARKE standard</p>
+          <h2 class="section-heading">What's inside <span class="accent-italic">every</span> guide.</h2>
+        </div>
+        <div class="std-item"><span class="n">01</span><div><h3>A formula, not just a recipe.</h3><p>Exact percentages and batch weights, so you can scale up or down and the result stays the same.</p></div></div>
+        <div class="std-item"><span class="n">02</span><div><h3>The why behind every ingredient.</h3><p>What it does, why it's in the formula, and what changes if you swap it.</p></div></div>
+        <div class="std-item"><span class="n">03</span><div><h3>A Key Takeaway on every page.</h3><p>The one thing to remember, so the knowledge actually sticks.</p></div></div>
+        <div class="std-item"><span class="n">04</span><div><h3>Tested in real life.</h3><p>Every formula is made and used daily — by me, my family, and my friends, in Phuket's year-round heat.</p></div></div>
+        <div class="std-item"><span class="n">05</span><div><h3>Beginner-safe methods.</h3><p>Written for your very first batch. If a step matters, it's explained — never assumed.</p></div></div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ EMAIL CAPTURE ============ -->
+  <!-- ============ QUOTE + CAPTURE ============ -->
   <section class="section section--dark" id="free-guide">
     <div class="container">
+      <p class="q-text" data-paint>Natural body care, <span class="accent-italic">demystified</span>.</p>
       <div class="capture-panel reveal">
         <h2>Not sure where to start?</h2>
         <p>Begin with the free Beginner's Guide to Natural Body Care. It gives you the foundation every other guide builds on — instant PDF, straight to your inbox.</p>
@@ -111,11 +213,13 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience"></a>
+        <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience" loading="lazy" width="140" height="30"></a>
         <p>Digital guides for natural body care you can make at home. Formulated and tested in Thailand.</p>
         <p class="tagline">Your skin. Your ritual. Your recipe.</p>
       </div>
@@ -145,6 +249,12 @@
     </div>
   </footer>
 
+  <a href="#free-guide" class="dock" aria-label="Get the free guide">
+    <span class="dock-dot" aria-hidden="true"></span>
+    <span>Free guide<span class="dock-label-long"> · Instant PDF</span></span>
+    <span class="dock-btn">Get it →</span>
+  </a>
+
   <!-- ============ DOWNLOAD MODAL ============ -->
   <div class="modal" id="download-modal" role="dialog" aria-modal="true" aria-labelledby="download-modal-title" aria-hidden="true">
     <div class="modal-backdrop" data-modal-close></div>
@@ -163,5 +273,10 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site-motion.js" defer></script>
+  <script src="pages.js" defer></script>
 </body>
 </html>
