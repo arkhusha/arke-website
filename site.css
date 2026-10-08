@@ -155,3 +155,6 @@ a .status::after, .idx-row .idx-status::after { content: ' →'; letter-spacing:
 /* ---- Guide forms: name + email + button wrap nicely in the wide panels ---- */
 .capture-panel .capture-form { flex-wrap: wrap; justify-content: center; }
 .capture-panel .capture-form input { flex: 1 1 200px; min-width: 0; }
+
+/* ---- Eyebrow labels: text only, no short rule beside them (site-wide) ---- */
+.eyebrow::before, .eyebrow::after { content: none !important; display: none !important; }

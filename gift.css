@@ -10,39 +10,30 @@
 /* ---- the box ---- */
 .gb-boxcard { background: var(--cloud); border-radius: 26px; padding: 26px 26px 24px; border: 1px solid rgba(66, 97, 136, 0.1); box-shadow: 0 30px 60px -40px rgba(22, 33, 46, 0.4); }
 .gb-boxcard .eyebrow { margin-bottom: 18px; }
-.gbox { position: relative; height: 290px; margin: 6px auto 10px; max-width: 360px; transform-origin: 50% 100%; }
-.gbox-lid {
-  position: absolute; left: 6%; right: 6%; top: 44px; height: 42px;
-  background: linear-gradient(180deg, #cfe0f2, #b9d2ec); border-radius: 12px;
-  transform: rotate(-6deg) translate(-6px, 0); transform-origin: 0 100%;
-  box-shadow: 0 10px 20px -12px rgba(22, 33, 46, 0.45);
-  transition: transform 0.6s var(--ease-out);
+.gbox { position: relative; margin: 4px 0 10px; transform-origin: 50% 100%; }
+.gbox-photo { border-radius: 20px; overflow: hidden; aspect-ratio: 900 / 650; background: var(--sky-mist); }
+.gbox-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease-out); }
+.gbox.has-items .gbox-photo img { transform: scale(1.04); }
+/* numbered slots under the photo, the first three are the minimum */
+.gbox-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: -30px; position: relative; padding: 0 10px; }
+.gbox-slot {
+  width: 58px; height: 58px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  background: rgba(255, 255, 255, 0.92); border: 1.5px dashed rgba(66, 97, 136, 0.35);
+  font-family: var(--font-display); font-size: 18px; color: var(--sky); backdrop-filter: blur(6px);
 }
-.gbox-lid::after { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 26px; margin-left: -13px; background: var(--action-blue); opacity: 0.85; }
-.gbox-body {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 190px;
-  background: linear-gradient(180deg, #f8f5ee, var(--cream)); border-radius: 18px;
-  border: 1px solid rgba(66, 97, 136, 0.14);
-  box-shadow: inset 0 18px 30px -20px rgba(22, 33, 46, 0.25), 0 26px 40px -26px rgba(22, 33, 46, 0.45);
-  overflow: hidden;
+.gbox-slot.extra { opacity: 0.55; }
+.gbox-slot.full { border: 0; background: none; animation: gbPop 0.5s var(--ease-out) both; }
+.gbox-slot .gb-th { width: 58px; height: 58px; }
+@keyframes gbPop { from { transform: translateY(-16px) scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* round product photo, ringed in the scent colour when scented */
+.gb-th {
+  width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex: none; display: grid; place-items: center;
+  background: var(--cream); box-shadow: 0 0 0 3px var(--cloud), 0 10px 18px -10px rgba(22, 33, 46, 0.55);
 }
-.gbox-ribbon { position: absolute; left: 50%; top: 0; bottom: 0; width: 26px; margin-left: -13px; background: var(--action-blue); opacity: 0.85; z-index: 0; }
-.gbox-items {
-  position: absolute; inset: 14px 14px 12px; z-index: 1;
-  display: flex; flex-wrap: wrap; align-content: flex-end; justify-content: center; gap: 6px;
-}
-.gbox-item {
-  width: 54px; height: 54px; border-radius: 14px; background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 8px 16px -10px rgba(22, 33, 46, 0.5); display: grid; place-items: center;
-  animation: gbPop 0.45s var(--ease-out) both;
-}
-.gbox-item svg { width: 40px; height: 40px; }
-@keyframes gbPop { from { transform: translateY(-14px) scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
-.gbox:not(.has-items) .gbox-items::before {
-  content: 'Your products land here'; align-self: center; margin: auto;
-  font-size: 13px; color: var(--ink-soft); background: rgba(255, 255, 255, 0.85); padding: 8px 14px; border-radius: 100px;
-}
-.gbox.has-items .gbox-lid { transform: rotate(-11deg) translate(-10px, -8px); }
+.gb-th.is-scented { box-shadow: 0 0 0 2px var(--cloud), 0 0 0 4px var(--tint), 0 10px 18px -10px rgba(22, 33, 46, 0.55); }
+.gb-th img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gb-th em { font-family: var(--font-accent); font-style: italic; font-size: 12px; color: var(--sky-deep); }
 
 .gb-progress-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
 .gb-progress { height: 4px; border-radius: 4px; background: rgba(66, 97, 136, 0.12); overflow: hidden; margin-top: 10px; }
@@ -68,16 +59,16 @@
 .gb-card.sel { border-color: var(--action-blue); box-shadow: 0 0 0 3px rgba(43, 127, 255, 0.18); }
 .gb-media { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: linear-gradient(180deg, #cfe0f2, #eef4fb); }
 .gb-media video { position: absolute; left: 0; width: 100%; object-fit: cover; }
-.gb-icon { position: absolute; inset: 0; display: grid; place-items: center; }
-.gb-icon svg { width: 58%; height: 58%; }
+.gb-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gb-type { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; background: linear-gradient(180deg, #f8f5ee, var(--cream)); font-family: var(--font-display); text-transform: uppercase; font-size: 20px; letter-spacing: 0.04em; color: var(--sky-deep); line-height: 1; }
+.gb-type em { font-family: var(--font-accent); text-transform: none; font-size: 22px; letter-spacing: 0; margin-bottom: 4px; }
 .gb-name { font-weight: 600; font-size: 13px; line-height: 1.3; padding: 4px 4px 0; }
 .gb-sizes { font-size: 12px; color: var(--ink-soft); padding: 0 4px; }
 
 /* ---- configure panel ---- */
 .gb-config { margin-top: 18px; border-top: 1px solid rgba(66, 97, 136, 0.12); padding-top: 20px; }
 .gb-config-head { display: flex; gap: 16px; align-items: center; margin-bottom: 8px; }
-.gb-preview { width: 64px; height: 64px; border-radius: 16px; background: var(--sky-mist); display: grid; place-items: center; flex: none; }
-.gb-preview svg { width: 46px; height: 46px; }
+.gb-th.gb-preview { width: 64px; height: 64px; }
 .gb-config h3 { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: 24px; line-height: 1; }
 .gb-pick { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
 .gb-sub { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky-deep); margin: 18px 0 8px; }
@@ -99,8 +90,7 @@
 /* ---- box contents ---- */
 .gb-list { list-style: none; display: grid; gap: 10px; }
 .gb-line { display: flex; align-items: center; gap: 14px; padding: 10px 12px; border-radius: 16px; background: var(--sky-mist); }
-.gb-line-ic { width: 44px; height: 44px; border-radius: 12px; background: var(--cloud); display: grid; place-items: center; flex: none; }
-.gb-line-ic svg { width: 32px; height: 32px; }
+.gb-line-ic { display: grid; flex: none; }
 .gb-line-txt { flex: 1; display: grid; font-size: 13px; color: var(--ink-soft); }
 .gb-line-txt strong { color: var(--ink); font-size: 14px; }
 .gb-remove { font: inherit; font-size: 12px; color: var(--sky-deep); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
@@ -133,12 +123,8 @@
 .gb-done p { color: var(--ink-soft); }
 
 /* ---- flying product ---- */
-.gb-ghost {
-  position: fixed; left: 0; top: 0; z-index: 200; width: 64px; height: 64px; border-radius: 18px;
-  background: var(--cloud); box-shadow: 0 18px 30px -12px rgba(22, 33, 46, 0.5);
-  display: grid; place-items: center; pointer-events: none;
-}
-.gb-ghost svg { width: 46px; height: 46px; }
+.gb-ghost { position: fixed; left: 0; top: 0; z-index: 200; width: 64px; height: 64px; pointer-events: none; }
+.gb-ghost .gb-th { width: 64px; height: 64px; }
 
 /* ---- mobile bottom bar ---- */
 .gb-mbar {
@@ -149,7 +135,7 @@
   box-shadow: 0 18px 40px -18px rgba(22, 33, 46, 0.45);
   color: var(--ink); text-decoration: none; font-size: 13px; white-space: nowrap;
 }
-.gb-mbar svg { width: 26px; height: 26px; }
+.gb-mbar img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
 .gb-mbar b { background: var(--action-blue); color: var(--cloud); border-radius: 100px; padding: 10px 16px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
 
 @media (max-width: 899px) {
@@ -161,10 +147,9 @@
 }
 @media (max-width: 560px) {
   .gb-form { grid-template-columns: 1fr; }
-  .gbox { height: 230px; }
-  .gbox-body { height: 160px; }
+  .gbox-slot, .gbox-slot .gb-th { width: 50px; height: 50px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .gbox-item { animation: none; }
-  .gbox-lid, .gb-progress i { transition: none; }
+  .gbox-slot.full { animation: none; }
+  .gbox-photo img, .gb-progress i { transition: none; }
 }

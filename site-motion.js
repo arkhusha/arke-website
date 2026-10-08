@@ -35,6 +35,13 @@ window.ARKE = (() => {
   });
   document.querySelectorAll('video[data-src]').forEach((v) => loader.observe(v));
   document.querySelectorAll('video[data-src], video[autoplay], video[data-eager]').forEach((v) => player.observe(v));
+  // for videos a page script adds later (the gift box cards)
+  const watchVideo = (v) => {
+    v.addEventListener('loadeddata', () => tryPlay(v));
+    v.addEventListener('canplay', () => tryPlay(v));
+    if (v.dataset.src) loader.observe(v);
+    player.observe(v);
+  };
 
   // ---------- Floating CTA dock: after the hero, hidden over the signup + footer ----------
   const dock = document.querySelector('.dock');
@@ -73,7 +80,7 @@ window.ARKE = (() => {
     return el.querySelectorAll('.w');
   };
 
-  if (!motion) return { motion, lenis: null, splitWords };
+  if (!motion) return { motion, lenis: null, splitWords, watchVideo };
 
   // =====================================================================
   gsap.registerPlugin(ScrollTrigger);
@@ -130,5 +137,5 @@ window.ARKE = (() => {
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
   window.addEventListener('load', () => ScrollTrigger.refresh());
 
-  return { motion, lenis, splitWords };
+  return { motion, lenis, splitWords, watchVideo };
 })();
