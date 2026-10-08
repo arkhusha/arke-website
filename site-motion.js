@@ -19,15 +19,22 @@ window.ARKE = (() => {
       loader.unobserve(v);
     });
   }, { rootMargin: '600px 600px' });
+  // play() can be refused if it runs before the clip has data, so remember
+  // visibility and try again as soon as the video can play
+  const tryPlay = (v) => { if (v._inView && motion) v.play().catch(() => {}); };
   const player = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       const v = e.target;
-      if (e.isIntersecting && motion) v.play().catch(() => {});
-      else v.pause();
+      v._inView = e.isIntersecting;
+      if (e.isIntersecting) tryPlay(v); else v.pause();
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('video').forEach((v) => {
+    v.addEventListener('loadeddata', () => tryPlay(v));
+    v.addEventListener('canplay', () => tryPlay(v));
+  });
   document.querySelectorAll('video[data-src]').forEach((v) => loader.observe(v));
-  document.querySelectorAll('video[data-src], video[autoplay]').forEach((v) => player.observe(v));
+  document.querySelectorAll('video[data-src], video[autoplay], video[data-eager]').forEach((v) => player.observe(v));
 
   // ---------- Floating CTA dock: after the hero, hidden over the signup + footer ----------
   const dock = document.querySelector('.dock');
@@ -86,7 +93,7 @@ window.ARKE = (() => {
   }
 
   // In-page anchors: route through Lenis so pinned scenes stay in sync
-  document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach((a) => {
+  document.querySelectorAll('a[href^="#"]:not([href="#"]):not([data-guide-modal])').forEach((a) => {
     a.addEventListener('click', (e) => {
       const target = document.getElementById(a.getAttribute('href').slice(1));
       if (!target) return;

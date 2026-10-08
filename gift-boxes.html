@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Boxes — ARK Experience</title>
+  <meta name="description" content="Build a gift box of handmade natural body care. Pick at least 3 products, choose sizes and scents, and request a quote for 10 boxes or more. Made in Thailand.">
+  <script>
+    document.documentElement.classList.add('js');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/analogue-italic-webfont.ttf" as="font" type="font/ttf" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261008d">
+  <link rel="stylesheet" href="site.css?v=20261008d">
+  <link rel="stylesheet" href="pages.css?v=20261008d">
+  <link rel="stylesheet" href="gift.css?v=20261008d">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience" width="140" height="30"></a>
+    <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <nav class="nav">
+      <a href="guides.html">Guides</a>
+      <a href="about.html">About</a>
+      <a href="gift-boxes.html" class="active">Gift Boxes</a>
+      <a href="blog.html">Blog</a>
+      <a href="#builder" class="btn btn--primary">Build a Box</a>
+    </nav>
+  </header>
+
+  <main>
+
+  <!-- ============ HERO ============ -->
+  <section class="p-hero" data-hero aria-labelledby="page-title">
+    <div class="cloudlayer" aria-hidden="true">
+      <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="cloudsHero" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0090 0.013" numOctaves="5" seed="31" stitchTiles="stitch" result="noise"/>
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.5 -0.4" result="c"/>
+            <feGaussianBlur in="c" stdDeviation="4.5"/>
+          </filter>
+          <linearGradient id="cloudsHeroFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.15"/>
+            <stop offset="0.55" stop-color="#fff" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0.9"/>
+          </linearGradient>
+          <mask id="cloudsHeroMask"><rect width="1200" height="520" fill="url(#cloudsHeroFade)"/></mask>
+        </defs>
+        <rect width="1200" height="520" filter="url(#cloudsHero)" mask="url(#cloudsHeroMask)"/>
+      </svg>
+    </div>
+
+    <p class="eyebrow">Gift boxes</p>
+    <h1 class="p-title" id="page-title">
+      <span class="p-ln"><span class="in">Gift</span> <span class="arch"><img src="images/body-butter-poster.jpg" alt="" width="720" height="1280"></span> <span class="in">boxes,</span></span>
+      <span class="p-ln"><span class="in accent-italic">made by hand.</span></span>
+    </h1>
+    <p class="hero-sub">Handmade natural body care for guests, teams and celebrations. Pick at least 3 products, choose the size and scent of each, and request a quote for 10 boxes or more.</p>
+    <div class="hero-actions">
+      <a href="#builder" class="btn btn--cloud">Build your box <span class="arrow">↓</span></a>
+    </div>
+  </section>
+
+  <!-- ============ BUILDER ============ -->
+  <section class="gb" id="builder">
+    <div class="gb-wrap">
+      <div class="gb-side">
+        <div class="gb-sticky">
+          <div class="gb-boxcard">
+            <p class="eyebrow">Your box</p>
+            <div class="gbox" id="gbox" aria-live="polite">
+              <div class="gbox-lid"></div>
+              <div class="gbox-body"><div class="gbox-ribbon"></div><div class="gbox-items"></div></div>
+            </div>
+            <div class="gb-progress" aria-hidden="true"><i id="gbProgress"></i></div>
+            <div class="gb-progress-row"><span id="gbProgressTxt">0 of 3 products minimum</span><span><span id="gbBoxesOut">10</span> boxes</span></div>
+            <div class="gb-rules">
+              <span>At least 3 products in each box</span>
+              <span>At least 10 boxes per order</span>
+              <span>Every box is packed by hand in Thailand</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gb-steps">
+        <div class="gb-step">
+          <div class="gb-step-h"><span class="gb-n">1</span><h2>Pick your products</h2></div>
+          <p class="gb-hint">Tap a product to choose its size and scent, then add it to your box.</p>
+          <div class="gb-grid" id="gbGrid"></div>
+          <div class="gb-config" id="gbConfig" hidden></div>
+        </div>
+
+        <div class="gb-step">
+          <div class="gb-step-h"><span class="gb-n">2</span><h2>Your box</h2></div>
+          <p class="gb-hint">Every box in your order will hold these products.</p>
+          <ul class="gb-list" id="gbList"></ul>
+        </div>
+
+        <div class="gb-step">
+          <div class="gb-step-h"><span class="gb-n">3</span><h2>How many boxes</h2></div>
+          <div class="gb-qty">
+            <div class="gb-stepper">
+              <button type="button" id="gbMinus" aria-label="Fewer boxes">−</button>
+              <input id="gbQty" type="number" min="10" step="1" value="10" inputmode="numeric" aria-label="Number of boxes">
+              <button type="button" id="gbPlus" aria-label="More boxes">+</button>
+            </div>
+            <small>Minimum 10 boxes</small>
+          </div>
+        </div>
+
+        <div class="gb-step">
+          <div class="gb-step-h"><span class="gb-n">4</span><h2>Get your quote</h2></div>
+          <p class="gb-hint">I'll reply by email with a quote, including delivery.</p>
+          <form class="gb-form" id="gbForm" novalidate>
+            <div class="gb-field"><label for="gbName">Full name</label><input id="gbName" autocomplete="name" required placeholder="Jane Doe"></div>
+            <div class="gb-field"><label for="gbEmail">Email</label><input id="gbEmail" type="email" autocomplete="email" required placeholder="you@company.com"></div>
+            <div class="gb-field gb-field--wide"><label for="gbPhone">Phone</label><input id="gbPhone" type="tel" autocomplete="tel" required placeholder="+66 8X XXX XXXX"></div>
+            <div class="gb-field gb-field--wide"><label for="gbAddress">Full address</label><input id="gbAddress" autocomplete="street-address" required placeholder="House number, street, building, district"></div>
+            <div class="gb-field"><label for="gbCity">City</label><input id="gbCity" autocomplete="address-level2" required placeholder="Phuket"></div>
+            <div class="gb-field"><label for="gbPostal">Postal code</label><input id="gbPostal" autocomplete="postal-code" required inputmode="numeric" placeholder="83000"></div>
+            <div class="gb-field gb-field--wide"><label for="gbNotes">Notes (optional)</label><textarea id="gbNotes" placeholder="Occasion, delivery date, a message card, anything else"></textarea></div>
+            <button type="submit" class="btn btn--solid gb-submit" id="gbSubmit" disabled>Request a quote <span class="arrow">→</span></button>
+            <p class="gb-gate" id="gbGate"></p>
+          </form>
+          <div class="gb-done" id="gbDone" hidden>
+            <h3>Thank you</h3>
+            <p>Your request is in. I'll email you a quote soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <a href="#gbox" class="gb-mbar" id="gbBar" aria-label="Review your gift box">
+    <svg viewBox="0 0 40 40" fill="none" stroke="#426188" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="16" width="28" height="18" rx="4" fill="#f4f1e9"/><rect x="4" y="10" width="32" height="7" rx="3" fill="#b9d2ec"/><path d="M20 10v24" stroke="#2b7fff" stroke-width="3"/></svg>
+    <span><span data-gb-count>0 products</span> in your box</span>
+    <b>Review</b>
+  </a>
+
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience" loading="lazy" width="140" height="30"></a>
+        <p>Digital guides for natural body care you can make at home. Formulated and tested in Thailand.</p>
+        <p class="tagline">Your skin. Your ritual. Your recipe.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="guides.html">All Guides</a></li>
+          <li><a href="guide-beginners.html">Beginner's Guide</a></li>
+          <li><a href="guide-lip-balm.html">Lip Balm Guide</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gift-boxes.html">Gift Boxes</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#" rel="noopener">Instagram</a></li>
+          <li><a href="#" rel="noopener">TikTok</a></li>
+          <li><a href="#" rel="noopener">YouTube</a></li>
+          <li><a href="#" rel="noopener">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ARK Experience · Thailand</span>
+      <span>All guides are for educational purposes only.</span>
+    </div>
+  </footer>
+
+  <!-- ============ DOWNLOAD MODAL ============ -->
+  <div class="modal" id="download-modal" role="dialog" aria-modal="true" aria-labelledby="download-modal-title" aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <button type="button" class="modal-close" aria-label="Close" data-modal-close>&times;</button>
+      <p class="eyebrow eyebrow--center" data-modal-kind>Free Guide</p>
+      <h2 id="download-modal-title">Get the guide for free.</h2>
+      <p data-modal-desc>Instant PDF, straight to your inbox.</p>
+      <form class="capture-form" novalidate data-guide-form>
+        <input type="text" name="name" placeholder="Your first name" required aria-label="First name" autocomplete="given-name">
+        <input type="email" name="email" placeholder="Your email address" required aria-label="Email address" autocomplete="email">
+        <button type="submit" class="btn btn--solid">Send Me the Guide</button>
+      </form>
+      <p class="capture-success">It's on its way. Check your inbox ✦</p>
+      <p class="capture-fineprint" data-modal-fine>Free PDF · No spam, ever · Unsubscribe anytime</p>
+    </div>
+  </div>
+
+  <script src="script.js?v=20261008d"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="site-motion.js?v=20261008d" defer></script>
+  <script src="pages.js?v=20261008d" defer></script>
+  <script src="gift.js?v=20261008d" defer></script>
+</body>
+</html>

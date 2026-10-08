@@ -34,12 +34,6 @@
     window.addEventListener('pointermove', (e) => { move.x(e.clientX + 150); move.y(e.clientY); }, { passive: true });
   }
 
-  // ---------- Checkout buttons: inert until a Stripe payment link is added ----------
-  $$('[data-checkout]').forEach((a) => {
-    if (!a.getAttribute('data-checkout')) a.addEventListener('click', (e) => e.preventDefault());
-    else a.href = a.getAttribute('data-checkout');
-  });
-
   // ---------- Sticky feature list: counter + active item (works without motion too) ----------
   const std = $('.std');
   const count = std && $('.std-count', std);

@@ -86,7 +86,7 @@ main { overflow-x: clip; }
 /* ---- Videos: the generated clips carry a corner watermark in their bottom
    strip — every video is sized 125%+ tall from the top so that strip is never
    in frame. Never remove this. ---- */
-.lab-media video, .gcard-media video, .idx-thumb video, .idx-preview video, .nextg-media > video {
+.lab-media video, .gcard-media video, .idx-thumb video, .idx-preview video, .nextg-media > video, .gb-media video {
   top: 0 !important; bottom: auto !important; height: 125% !important;
 }
 .idx-thumb { position: relative; }
@@ -151,3 +151,7 @@ a .status::after, .idx-row .idx-status::after { content: ' →'; letter-spacing:
   .cloudlayer svg { animation: none; }
   .dock { transition: none; }
 }
+
+/* ---- Guide forms: name + email + button wrap nicely in the wide panels ---- */
+.capture-panel .capture-form { flex-wrap: wrap; justify-content: center; }
+.capture-panel .capture-form input { flex: 1 1 200px; min-width: 0; }
