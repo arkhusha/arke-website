@@ -44,7 +44,7 @@ document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 // ============================================================
 
 // Paste the Apps Script web-app URL (ends in /exec) after deploying Code.gs.
-const FORMS_ENDPOINT = '';
+const FORMS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyIkWKz90lhLeYaDP4OTIAb6irUUeUxuPEYm29wYY1NXYiVSAccCItTHcZXO9O90Hoz/exec';
 
 const sendSubmission = (payload) => {
   if (!FORMS_ENDPOINT) { console.info('[ARKE forms] endpoint not set, submission not stored', payload); return Promise.resolve(); }
