@@ -165,7 +165,9 @@ a .status::after, .idx-row .idx-status::after { content: ' →'; letter-spacing:
 .eyebrow::before, .eyebrow::after { content: none !important; display: none !important; }
 
 /* ---- Yana's own footage: no watermark, so no crop. Sound button + tap-to-play player ---- */
-.std-media > video.is-real { top: -6% !important; height: 112% !important; }
+.std-media > video.is-real { top: 0 !important; height: 100% !important; }
+/* own clips show the whole 9:16 frame: the box takes the video's shape and fits the screen height */
+.std-media.std-media--real { aspect-ratio: 9 / 16; max-height: none; width: min(100%, calc((100svh - 150px) * 9 / 16)); margin: 0 auto; }
 .snd {
   position: absolute; right: 18px; bottom: 18px; z-index: 3; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
   display: grid; place-items: center; color: var(--cloud); background: rgba(22, 33, 46, 0.38);

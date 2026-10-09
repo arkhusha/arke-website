@@ -100,7 +100,7 @@
     });
   });
   if (stdItems[0]) stdItems[0].classList.add('active');
-  if (std) gsap.fromTo('.std-media > img, .std-media > video, .std-media > svg', { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: std, start: 'top bottom', end: 'bottom top', scrub: true } });
+  if (std) gsap.fromTo('.std-media > img, .std-media > video:not(.is-real), .std-media > svg', { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: std, start: 'top bottom', end: 'bottom top', scrub: true } });
 
   // ---------- Stats: tiles rise in together, then count up ----------
   if ($('.stats-grid')) gsap.from('.stat', { y: 36, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.12, scrollTrigger: { trigger: '.stats-grid', start: 'top 88%' } });
