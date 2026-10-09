@@ -13,9 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="fonts/analogue-italic-webfont.ttf" as="font" type="font/ttf" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261009g">
-  <link rel="stylesheet" href="site.css?v=20261009g">
-  <link rel="stylesheet" href="pages.css?v=20261009g">
+  <link rel="stylesheet" href="styles.css?v=20261009i">
+  <link rel="stylesheet" href="site.css?v=20261009i">
+  <link rel="stylesheet" href="pages.css?v=20261009i">
 </head>
 <body>
 
@@ -23,7 +23,10 @@
     <a class="logo" href="index.html"><img src="assets/logo-arke.png" alt="ARK Experience" width="140" height="30"></a>
     <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     <nav class="nav">
-      <a href="guides.html">Guides</a>
+      <div class="nav-dd">
+        <a href="guides.html">Guides</a><button type="button" class="nav-dd-btn" aria-expanded="false" aria-label="Show all guides"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-dd-menu"><div class="nav-dd-group"><span class="nav-dd-label">Free</span><a href="guide-beginners.html">Beginner's Guide</a><a href="guide-lip-balm.html">Lip Balm</a></div><div class="nav-dd-group"><span class="nav-dd-label">Paid</span><a href="guide-deodorant.html">Natural Deodorant</a><a href="guide-shampoo-bars.html">Shampoo Bars</a><a href="guide-body-butter.html">Whipped Body Butter</a><a href="guide-oil-infusions.html">Oil Infusions</a></div><a class="nav-dd-all" href="guides.html">All guides <span>→</span></a></div>
+      </div>
       <a href="about.html">About</a>
       <a href="gift-boxes.html">Gift Boxes</a>
       <a href="blog.html" class="active">Blog</a>
@@ -145,11 +148,11 @@
     </div>
   </div>
 
-  <script src="script.js?v=20261009g"></script>
+  <script src="script.js?v=20261009i"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="site-motion.js?v=20261009g" defer></script>
-  <script src="pages.js?v=20261009g" defer></script>
+  <script src="site-motion.js?v=20261009i" defer></script>
+  <script src="pages.js?v=20261009i" defer></script>
 </body>
 </html>

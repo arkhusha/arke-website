@@ -190,3 +190,42 @@ a .status::after, .idx-row .idx-status::after { content: ' →'; letter-spacing:
 .watch .tap-vid { max-width: 380px; width: 100%; justify-self: center; }
 .watch p.lead { margin-top: 22px; }
 @media (max-width: 760px) { .watch-wrap { grid-template-columns: 1fr; } .watch .tap-vid { max-width: 320px; } }
+
+/* ---- Guides dropdown in the top menu ---- */
+.nav-dd { position: relative; display: inline-flex; align-items: center; gap: 4px; }
+.nav-dd-btn { border: 0; background: none; color: var(--ink-soft); width: 22px; height: 22px; display: grid; place-items: center; cursor: pointer; border-radius: 50%;
+  transition: transform 0.3s var(--ease-out), color 0.3s ease; }
+.nav-dd:hover .nav-dd-btn, .nav-dd.open .nav-dd-btn { color: var(--ink); transform: rotate(180deg); }
+.nav-dd-menu {
+  position: absolute; top: calc(100% + 14px); left: 50%; transform: translate(-50%, 8px); min-width: 250px; z-index: 120;
+  padding: 18px 20px 14px; border-radius: 20px; background: rgba(255, 255, 255, 0.94); border: 1px solid rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 30px 60px -28px rgba(22, 33, 46, 0.45);
+  opacity: 0; visibility: hidden; transition: opacity 0.25s ease, transform 0.35s var(--ease-out), visibility 0s linear 0.25s;
+}
+.nav-dd-menu::before { content: ''; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }  /* hover bridge */
+.nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu, .nav-dd.open .nav-dd-menu {
+  opacity: 1; visibility: visible; transform: translate(-50%, 0); transition: opacity 0.25s ease, transform 0.35s var(--ease-out), visibility 0s; }
+.nav-dd-group { display: grid; gap: 2px; margin-bottom: 12px; }
+.nav-dd-label { font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sky); margin-bottom: 4px; }
+.nav .nav-dd-menu a:not(.btn) { font-size: 13.5px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--ink); padding: 6px 10px; margin: 0 -10px; border-radius: 10px; white-space: nowrap; }
+.nav .nav-dd-menu a:not(.btn)::after { display: none; }
+.nav .nav-dd-menu a:not(.btn):hover { background: var(--sky-mist); }
+.nav .nav-dd-menu a[aria-current="page"] { color: var(--action-blue); }
+.nav .nav-dd-menu a.nav-dd-all { display: flex; justify-content: space-between; margin-top: 2px; padding-top: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sky-deep); }
+@media (max-width: 760px) {
+  .nav-dd { flex-wrap: wrap; justify-content: center; width: 100%; }
+  .nav-dd-btn { color: rgba(255, 255, 255, 0.9); }
+  .nav-dd:hover .nav-dd-btn { transform: none; color: rgba(255, 255, 255, 0.9); }
+  .nav-dd.open .nav-dd-btn { transform: rotate(180deg); color: var(--cloud); }
+  .nav-dd-menu, .nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu {
+    position: static; transform: none; width: 100%; min-width: 0; margin-top: 14px; padding: 0; background: none; border: 0; box-shadow: none;
+    backdrop-filter: none; -webkit-backdrop-filter: none; text-align: center; display: none; opacity: 1; visibility: visible; }
+  .nav-dd.open .nav-dd-menu { display: block; transform: none; }
+  .nav-dd-menu::before { display: none; }
+  .nav-dd-group { margin-bottom: 14px; }
+  .nav-dd-label { color: var(--sky-light); }
+  .nav .nav-dd-menu a:not(.btn) { color: rgba(255, 255, 255, 0.92); margin: 0; font-size: 14px; }
+  .nav .nav-dd-menu a:not(.btn):hover { background: rgba(255, 255, 255, 0.1); }
+  .nav .nav-dd-menu a[aria-current="page"] { color: var(--cloud); text-decoration: underline; text-underline-offset: 4px; }
+  .nav .nav-dd-menu a.nav-dd-all { justify-content: center; gap: 8px; color: var(--sky-light); }
+}

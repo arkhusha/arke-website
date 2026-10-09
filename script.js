@@ -22,6 +22,21 @@ if (navToggle) {
   );
 }
 
+// Guides dropdown: the arrow opens it (touch screens, keyboard); hover handles desktop
+document.querySelectorAll('.nav-dd').forEach((dd) => {
+  const btn = dd.querySelector('.nav-dd-btn');
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = dd.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+});
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.nav-dd.open').forEach((dd) => {
+    if (!dd.contains(e.target)) { dd.classList.remove('open'); dd.querySelector('.nav-dd-btn').setAttribute('aria-expanded', 'false'); }
+  });
+});
+
 // Scroll reveals
 const observer = new IntersectionObserver(
   (entries) => {
