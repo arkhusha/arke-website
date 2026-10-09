@@ -12,13 +12,13 @@
   const P = (id) => ({ poster: `images/posters/${id}.jpg`, thumb: `images/posters/${id}-t.jpg` });
   const PRODUCTS = [
     { id: 'body-butter', name: 'Whipped Body Butter', sizes: ['20 g', '100 g'], video: 'images/body-butter.mp4', ...P('body-butter') },
-    { id: 'soap-bar', name: 'Soap Bar', sizes: ['20 g', '100 g'], ...P('soap-bar') },
+    { id: 'soap-bar', name: 'Soap Bar', sizes: ['20 g', '100 g'], video: 'images/soap-bar.mp4', ...P('soap-bar') },
     { id: 'shampoo-bar', name: 'Shampoo Bar', sizes: ['20 g', '100 g'], video: 'images/shampoo-bars.mp4', ...P('shampoo-bar') },
     { id: 'hair-oil', name: 'Hair Oil', sizes: ['20 ml', '50 ml'], video: 'images/hair-oil.mp4', fixedOils: ['Rosemary'], ...P('hair-oil') },
     { id: 'body-oil', name: 'Body Oil', sizes: ['20 ml', '50 ml'], video: 'images/body-oil.mp4', oneOf: ['Lavender', 'Rose'], ...P('body-oil') },
     { id: 'deodorant', name: 'Deodorant', sizes: ['20 g', '100 g'], video: 'images/deodorant.mp4', ...P('deodorant') },
     { id: 'lip-balm', name: 'Lip Balm', sizes: ['7 g'], video: 'images/lip-balm.mp4', ...P('lip-balm') },
-    { id: 'candle', name: 'Wooden-Wick Candle', sizes: ['100 ml'] },
+    { id: 'candle', name: 'Wooden-Wick Candle', sizes: ['100 ml'], video: 'images/candle.mp4', ...P('candle') },
   ];
 
   const OILS = {
