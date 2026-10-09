@@ -13,9 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="fonts/analogue-italic-webfont.ttf" as="font" type="font/ttf" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261009i">
-  <link rel="stylesheet" href="site.css?v=20261009i">
-  <link rel="stylesheet" href="pages.css?v=20261009i">
+  <link rel="stylesheet" href="styles.css?v=20261009j">
+  <link rel="stylesheet" href="site.css?v=20261009j">
+  <link rel="stylesheet" href="pages.css?v=20261009j">
 </head>
 <body>
 
@@ -30,7 +30,7 @@
       <a href="about.html">About</a>
       <a href="gift-boxes.html">Gift Boxes</a>
       <a href="blog.html">Blog</a>
-      <button type="button" class="btn btn--primary" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="">Get the Guide</button>
+      <button type="button" class="btn btn--primary" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="" data-price="$12.99">Buy now · $12.99</button>
     </nav>
   </header>
 
@@ -58,7 +58,7 @@
     </div>
     <div class="gx-wrap">
       <div>
-        <span class="gx-badge">Paid guide · Instant PDF</span>
+        <span class="gx-badge">Paid guide · $12.99 · Instant PDF</span>
         <h1 class="gx-title" id="page-title">
           <span class="ln"><span class="in">Natural</span></span>
           <span class="ln"><span class="in"><span class="accent-italic">deodorant</span></span></span>
@@ -70,7 +70,7 @@
           <span class="chip">Baking-soda-free</span>
         </div>
         <div class="hero-actions">
-          <button type="button" class="btn btn--cloud" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="">Get the Guide <span class="arrow">→</span></button>
+          <button type="button" class="btn btn--cloud" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="" data-price="$12.99">Buy now · $12.99 <span class="arrow">→</span></button>
           <a href="#inside" class="btn btn--ghost-light">What's inside</a>
         </div>
       </div>
@@ -162,8 +162,9 @@
       <div class="capture-panel reveal">
         <h2>Get the deodorant guide.</h2>
         <p>One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep.</p>
+        <p class="buy-price"><strong>$12.99</strong><span>one-time payment</span></p>
         <div class="buy-actions">
-          <button type="button" class="btn btn--solid" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="">Get the Guide <span class="arrow">→</span></button>
+          <button type="button" class="btn btn--solid" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="" data-price="$12.99">Buy now · $12.99 <span class="arrow">→</span></button>
           <button type="button" class="buy-free" data-guide-modal data-guide-id="guide-beginners" data-guide="Beginner&#39;s Guide to Natural Body Care" data-guide-type="free" data-desc="16 pages on reading labels, understanding ingredients and taking your first step into making your own. Instant PDF, straight to your inbox.">New here? Start with the free Beginner's Guide</button>
         </div>
         <p class="capture-fineprint">Instant PDF · One-time payment · No subscription</p>
@@ -208,10 +209,10 @@
     </div>
   </footer>
 
-  <a href="#buy" class="dock" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="" aria-label="Get the guide">
+  <a href="#buy" class="dock" data-guide-modal data-guide-id="guide-deodorant" data-guide="Natural Deodorant Guide" data-guide-type="paid" data-desc="One tested formula, explained ingredient by ingredient, with the full method. Instant PDF, straight to your inbox and yours to keep." data-checkout="" data-price="$12.99" aria-label="Buy the guide for $12.99">
     <span class="dock-dot" aria-hidden="true"></span>
-    <span>Paid guide<span class="dock-label-long"> · Instant PDF</span></span>
-    <span class="dock-btn">Get it →</span>
+    <span>Paid guide · $12.99<span class="dock-label-long"> · Instant PDF</span></span>
+    <span class="dock-btn">Buy now →</span>
   </a>
 
   <!-- ============ DOWNLOAD MODAL ============ -->
@@ -232,11 +233,11 @@
     </div>
   </div>
 
-  <script src="script.js?v=20261009i"></script>
+  <script src="script.js?v=20261009j"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="site-motion.js?v=20261009i" defer></script>
-  <script src="pages.js?v=20261009i" defer></script>
+  <script src="site-motion.js?v=20261009j" defer></script>
+  <script src="pages.js?v=20261009j" defer></script>
 </body>
 </html>

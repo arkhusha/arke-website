@@ -229,3 +229,8 @@ a .status::after, .idx-row .idx-status::after { content: ' →'; letter-spacing:
   .nav .nav-dd-menu a[aria-current="page"] { color: var(--cloud); text-decoration: underline; text-underline-offset: 4px; }
   .nav .nav-dd-menu a.nav-dd-all { justify-content: center; gap: 8px; color: var(--sky-light); }
 }
+
+/* ---- Paid guide price above the Buy now button ---- */
+.buy-price { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin: 6px 0 22px; }
+.buy-price strong { font-family: var(--font-display); font-weight: 600; font-size: clamp(40px, 5vw, 56px); line-height: 1; color: var(--cloud); letter-spacing: -0.01em; }
+.buy-price span { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); }

@@ -129,10 +129,10 @@ if (guideModal) {
     const paid = t.guideType === 'paid';
     // copy this guide's tags onto the pop-up form
     Object.assign(form.dataset, { guideId: t.guideId || '', guide: t.guide || '', guideType: t.guideType || 'free', checkout: t.checkout || '' });
-    if (kind) kind.textContent = paid ? 'Paid Guide' : 'Free Guide';
+    if (kind) kind.textContent = paid ? (t.price ? `Paid Guide · ${t.price}` : 'Paid Guide') : 'Free Guide';
     if (title) title.textContent = t.guide || 'Get the guide for free.';
     if (desc && t.desc) desc.textContent = t.desc;
-    if (submit) submit.textContent = paid ? 'Continue to Payment →' : 'Send Me the Guide';
+    if (submit) submit.textContent = paid ? (t.price ? `Continue to payment · ${t.price} →` : 'Continue to Payment →') : 'Send Me the Guide';
     if (fine) fine.textContent = paid ? 'Instant PDF · One-time payment · Secure checkout' : 'Free PDF · No spam, ever · Unsubscribe anytime';
     if (success) success.textContent = "It's on its way. Check your inbox ✦";
     form.style.display = '';
