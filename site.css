@@ -163,3 +163,28 @@ a .status::after, .idx-row .idx-status::after { content: ' →'; letter-spacing:
 
 /* ---- Eyebrow labels: text only, no short rule beside them (site-wide) ---- */
 .eyebrow::before, .eyebrow::after { content: none !important; display: none !important; }
+
+/* ---- Yana's own footage: no watermark, so no crop. Sound button + tap-to-play player ---- */
+.std-media > video.is-real { top: -6% !important; height: 112% !important; }
+.snd {
+  position: absolute; right: 18px; bottom: 18px; z-index: 3; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+  display: grid; place-items: center; color: var(--cloud); background: rgba(22, 33, 46, 0.38);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background 0.25s ease, transform 0.25s var(--ease-out);
+}
+.snd:hover { transform: scale(1.06); background: rgba(22, 33, 46, 0.55); }
+.snd .snd-on { display: none; } .snd.on .snd-on { display: inline; } .snd.on .snd-off { display: none; }
+.tap-vid { position: relative; aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden; background: linear-gradient(180deg, #b9d2ec, #eef4fb);
+  box-shadow: 0 40px 70px -40px rgba(22, 33, 46, 0.5); }
+.tap-vid video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tap-play { position: absolute; inset: 0; border: 0; background: linear-gradient(180deg, rgba(22,33,46,0) 55%, rgba(22,33,46,0.45)); cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 10px; padding-bottom: 28px; color: var(--cloud);
+  font: 600 11px/1 var(--font-body); letter-spacing: 0.22em; text-transform: uppercase; }
+.tap-play i { width: 68px; height: 68px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.92); color: var(--sky-deep);
+  box-shadow: 0 16px 30px -12px rgba(22, 33, 46, 0.5); transition: transform 0.3s var(--ease-out); }
+.tap-play:hover i { transform: scale(1.08); }
+.tap-vid.playing .tap-play { display: none; }
+.watch { background: var(--sky-mist); padding: var(--section-pad) var(--gutter); }
+.watch-wrap { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.watch .tap-vid { max-width: 380px; width: 100%; justify-self: center; }
+.watch p.lead { margin-top: 22px; }
+@media (max-width: 760px) { .watch-wrap { grid-template-columns: 1fr; } .watch .tap-vid { max-width: 320px; } }

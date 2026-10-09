@@ -15,9 +15,9 @@
   <link rel="preload" href="fonts/analogue-italic-webfont.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="images/body-butter-poster.jpg" as="image" media="(max-width: 899px), (max-aspect-ratio: 1/1)">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261009d">
-  <link rel="stylesheet" href="site.css?v=20261009d">
-  <link rel="stylesheet" href="home.css?v=20261009d">
+  <link rel="stylesheet" href="styles.css?v=20261009e">
+  <link rel="stylesheet" href="site.css?v=20261009e">
+  <link rel="stylesheet" href="home.css?v=20261009e">
 </head>
 <body>
 
@@ -57,9 +57,11 @@
     </div>
 
     <div class="h-stage" aria-hidden="true">
-      <video autoplay muted loop playsinline preload="auto"
-        data-wide="images/body-butter-hero.mp4"
-        data-tall="images/body-butter.mp4" data-tall-poster="images/body-butter-poster.jpg"></video>
+      <!-- test: Yana's making footage. To switch back use data-wide="images/body-butter-hero.mp4"
+           data-tall="images/body-butter.mp4" data-tall-poster="images/body-butter-poster.jpg" and drop data-real -->
+      <video autoplay muted loop playsinline preload="auto" data-real
+        data-wide="images/hero-making-wide.mp4"
+        data-tall="images/hero-making.mp4" data-tall-poster="images/hero-making.jpg"></video>
       <script>
         // Landscape screens (desktop, laptop, sideways tablet) get the 16:9 clip;
         // phones and upright tablets get the 9:16 one. Only the chosen file loads.
@@ -70,7 +72,7 @@
             const wide = mq.matches;
             const src = wide ? v.dataset.wide : v.dataset.tall;
             if (v.getAttribute('src') === src) return;
-            v.classList.toggle('is-tall', !wide);
+            v.classList.toggle('is-tall', !wide && !('real' in v.dataset));  // own footage has no watermark to crop
             if (wide) v.removeAttribute('poster'); else v.setAttribute('poster', v.dataset.tallPoster);
             v.src = src;
             if (document.documentElement.classList.contains('motion')) v.play().catch(() => {});
@@ -445,11 +447,11 @@
     </div>
   </div>
 
-  <script src="script.js?v=20261009d"></script>
+  <script src="script.js?v=20261009e"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="site-motion.js?v=20261009d" defer></script>
-  <script src="home.js?v=20261009d" defer></script>
+  <script src="site-motion.js?v=20261009e" defer></script>
+  <script src="home.js?v=20261009e" defer></script>
 </body>
 </html>

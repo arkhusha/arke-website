@@ -35,6 +35,26 @@ window.ARKE = (() => {
   });
   document.querySelectorAll('video[data-src]').forEach((v) => loader.observe(v));
   document.querySelectorAll('video[data-src], video[autoplay], video[data-eager]').forEach((v) => player.observe(v));
+  // sound button on Yana's own clips: one clip with sound at a time
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('.snd');
+    if (!b) return;
+    const v = b.parentElement.querySelector('video');
+    const on = v.muted;
+    document.querySelectorAll('video').forEach((o) => { o.muted = true; });
+    document.querySelectorAll('.snd').forEach((o) => { o.classList.remove('on'); o.setAttribute('aria-pressed', 'false'); o.setAttribute('aria-label', 'Turn sound on'); });
+    if (on) { v.muted = false; v.play().catch(() => {}); b.classList.add('on'); b.setAttribute('aria-pressed', 'true'); b.setAttribute('aria-label', 'Turn sound off'); }
+  });
+  // tap-to-play player (About page): the file only loads when someone presses play
+  document.querySelectorAll('.tap-vid').forEach((box) => {
+    const v = box.querySelector('video');
+    box.querySelector('.tap-play').addEventListener('click', () => {
+      document.querySelectorAll('video').forEach((o) => { if (o !== v) o.muted = true; });
+      if (!v.src) v.src = v.dataset.tap;
+      v.controls = true; v.muted = false; box.classList.add('playing');
+      v.play().catch(() => {});
+    });
+  });
   // for videos a page script adds later (the gift box cards)
   const watchVideo = (v) => {
     v.addEventListener('loadeddata', () => tryPlay(v));
