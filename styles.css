@@ -365,7 +365,7 @@ body::after {
   margin: 38px auto 0;
   font-size: clamp(15px, 1.6vw, 17.5px);
   line-height: 1.8;
-  font-weight: 500;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 18px rgba(34, 60, 92, 0.3);
 }
@@ -463,7 +463,7 @@ body::after {
 }
 .marquee span {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -671,7 +671,7 @@ body::after {
 
 .guide-card h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 27px;
   line-height: 1.12;
   margin-bottom: 14px;
@@ -727,7 +727,7 @@ body::after {
 
 .step-card h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 24px;
   margin-bottom: 14px;
   color: var(--cloud);
@@ -933,7 +933,7 @@ body::after {
 }
 .chapter h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(19px, 2.3vw, 26px);
   flex: 1;
 }
@@ -998,7 +998,7 @@ body::after {
 }
 .timeline-item h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 22px;
   margin-bottom: 8px;
 }
@@ -1028,7 +1028,7 @@ body::after {
 }
 .value-card h3 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 22px;
   margin-bottom: 12px;
 }
@@ -1244,7 +1244,7 @@ body::after {
 
 .modal-panel h2 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   font-size: clamp(26px, 4vw, 32px);
   line-height: 1.12;
   color: var(--ink);

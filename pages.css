@@ -198,7 +198,7 @@ a.idx-title:hover, .idx-row:hover a.idx-title { color: var(--action-blue); trans
 .gx-title .ln { display: block; overflow: hidden; padding-bottom: 0.03em; }
 .gx-title .in { display: inline-block; }
 .gx-title .accent-italic { font-size: 0.88em; }
-.gx-lead { margin: 28px 0 0; max-width: 540px; font-size: clamp(15px, 1.3vw, 17px); line-height: 1.75; font-weight: 500; color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 18px rgba(34, 60, 92, 0.3); }
+.gx-lead { margin: 28px 0 0; max-width: 540px; font-size: clamp(15px, 1.3vw, 17px); line-height: 1.75; font-weight: 400; color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 18px rgba(34, 60, 92, 0.3); }
 .gx-hero .hero-chips { justify-content: flex-start; margin-top: 26px; }
 .gx-hero .hero-actions { justify-content: flex-start; margin-top: 30px; }
 .gx-visual { position: relative; }
@@ -212,7 +212,7 @@ a.idx-title:hover, .idx-row:hover a.idx-title { color: var(--action-blue); trans
   background: rgba(255, 255, 255, 0.78); border: 1px solid rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 20px 40px -20px rgba(22, 33, 46, 0.45);
-  color: var(--ink); font-size: 12.5px; font-weight: 500; line-height: 1.3;
+  color: var(--ink); font-size: 12.5px; font-weight: 400; line-height: 1.3;
 }
 .gx-float span { white-space: nowrap; }
 .gx-float strong { font-family: var(--font-display); font-weight: 600; font-size: 26px; line-height: 1; color: var(--sky-deep); }
@@ -269,7 +269,7 @@ a.idx-title:hover, .idx-row:hover a.idx-title { color: var(--action-blue); trans
    ============================================================ */
 .p-paint { background: var(--cloud); padding: var(--section-pad) var(--gutter); }
 .p-paint .paint-text {
-  font-family: var(--font-display); font-weight: 500;
+  font-family: var(--font-display); font-weight: 400;
   font-size: clamp(30px, 4.5vw, 70px); line-height: 1.08; letter-spacing: -0.005em;
   color: var(--ink); max-width: 1180px;
 }
