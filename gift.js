@@ -18,14 +18,16 @@
         ...(sc === 'Lavender' ? ['Lavandula Angustifolia (Lavender) Oil'] : []), 'Tocopherol (Vitamin E)'] },
     { id: 'soap-bar', name: 'Soap Bar', sizes: ['20 g', '100 g'], video: 'images/soap-bar.mp4', ...P('soap-bar'),
       scents: ['Lavender', 'Coffee', 'Charcoal', 'Rose', 'Neutral'],
-      // lavender and rose soaps use rice bran oil infused with the flowers, not essential oils
+      // lavender and rose soaps use rice bran oil infused with the flowers; coffee = ground coffee beans; charcoal also has eucalyptus essential oil
       ingredients: (sc) => ['Sodium Palmate', 'Aqua (Water)', 'Sodium Cocoate', 'Sodium Shea Butterate', 'Sodium Olivate', 'Oryza Sativa (Rice) Bran Oil',
         ...({ Lavender: ['Lavandula Angustifolia (Lavender) Flower Extract'], Rose: ['Rosa Damascena (Rose) Flower Extract'],
-          Coffee: ['Coffea Arabica (Coffee) Seed Powder'], Charcoal: ['Charcoal Powder'] }[sc] || []), 'Glycerin'] },
+          Coffee: ['Coffea Arabica (Coffee) Seed Powder'], Charcoal: ['Charcoal Powder', 'Eucalyptus Globulus (Eucalyptus) Leaf Oil'] }[sc] || []), 'Glycerin'] },
     { id: 'shampoo-bar', name: 'Shampoo Bar', sizes: ['20 g', '100 g'], video: 'images/shampoo-bars.mp4', ...P('shampoo-bar'),
       scents: ['Rosemary'],
+      // rice bran oil carries two infusions (rosemary and calendula), plus rosemary essential oil
       ingredients: () => ['Sodium Cocoyl Isethionate', 'Cocamidopropyl Betaine', 'Behentrimonium Methosulfate', 'Cetyl Alcohol', 'Kaolin',
-        'Rosmarinus Officinalis (Rosemary) Leaf Powder', 'Oryza Sativa (Rice) Bran Oil', 'Calendula Officinalis (Calendula) Flower Extract',
+        'Rosmarinus Officinalis (Rosemary) Leaf Powder', 'Oryza Sativa (Rice) Bran Oil', 'Rosmarinus Officinalis (Rosemary) Leaf Extract',
+        'Calendula Officinalis (Calendula) Flower Extract',
         'Rosmarinus Officinalis (Rosemary) Leaf Oil', 'Ricinus Communis (Castor) Seed Oil', 'Glycerin', 'Butylene Glycol', 'Phenoxyethanol'] },
     { id: 'hair-oil', name: 'Hair Oil', sizes: ['20 ml', '50 ml'], video: 'images/hair-oil.mp4', ...P('hair-oil'),
       scents: ['Rosemary'],
