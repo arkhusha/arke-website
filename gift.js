@@ -47,9 +47,9 @@
       scents: ['Peppermint + Kaffir Lime', 'Lily'],
       ingredients: (sc) => ['Hydrogenated Coconut Oil (Coconut Wax)', 'Cera Alba (Beeswax)', 'Butyrospermum Parkii (Shea) Butter', 'Tocopherol (Vitamin E)', 'Glycerin',
         ...(sc === 'Lily' ? ['Lilium Candidum (Lily) Flower Extract'] : ['Mentha Piperita (Peppermint) Oil', 'Citrus Hystrix (Kaffir Lime) Peel Oil'])] },
-    // the candle keeps the open choice: one oil or a blend of up to three, or unscented
     { id: 'candle', name: 'Wooden-Wick Candle', sizes: ['100 ml'], video: 'images/candle.mp4', ...P('candle'),
-      ingredients: (sc, oils) => ['Soy wax', 'Coconut wax', 'Beeswax', 'Wooden wick', ...oils.map((o) => `${o} essential oil`)] },
+      scents: ['Unscented'],
+      ingredients: () => ['Soy wax', 'Coconut wax', 'Beeswax', 'Wooden wick'] },
   ];
   // ring colour for each fixed scent (Neutral has no ring)
   const SCENT_COLOR = { Lavender: '#b9a3d9', Lemongrass: '#c9d66b', Peppermint: '#7fc6a4', Rosemary: '#7fae6b', Coffee: '#7b5537',
@@ -121,7 +121,7 @@
     const tint = tintFor(p, cfg.oils);
     let scents;
     if (p.scents && p.scents.length === 1) {
-      scents = `<p class="gb-note">${p.name} is made with ${p.scents[0]} only, so there's nothing to choose here.</p><div class="gb-chips"><span class="gb-chip on">${p.scents[0]}</span></div>`;
+      scents = `<p class="gb-note">${p.scents[0] === 'Unscented' ? `The ${p.name.toLowerCase()} is unscented` : `${p.name} is made with ${p.scents[0]} only`}, so there's nothing to choose here.</p><div class="gb-chips"><span class="gb-chip on">${p.scents[0]}</span></div>`;
     } else if (p.scents) {
       scents = `<p class="gb-note">Pick one.</p><div class="gb-chips">${p.scents.map((o) => `<button type="button" class="gb-chip${cfg.oils[0] === o ? ' on' : ''}" data-one="${esc(o)}">${esc(o)}</button>`).join('')}</div>`;
     } else {
