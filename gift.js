@@ -11,15 +11,38 @@
   // Both are frames from the product videos, cut above the watermark strip.
   const P = (id) => ({ poster: `images/posters/${id}.jpg`, thumb: `images/posters/${id}-t.jpg` });
   const PRODUCTS = [
-    { id: 'body-butter', name: 'Whipped Body Butter', sizes: ['20 g', '100 g'], video: 'images/body-butter.mp4', ...P('body-butter') },
-    { id: 'soap-bar', name: 'Soap Bar', sizes: ['20 g', '100 g'], video: 'images/soap-bar.mp4', ...P('soap-bar') },
-    { id: 'shampoo-bar', name: 'Shampoo Bar', sizes: ['20 g', '100 g'], video: 'images/shampoo-bars.mp4', ...P('shampoo-bar') },
-    { id: 'hair-oil', name: 'Hair Oil', sizes: ['20 ml', '50 ml'], video: 'images/hair-oil.mp4', fixedOils: ['Rosemary'], ...P('hair-oil') },
-    { id: 'body-oil', name: 'Body Oil', sizes: ['20 ml', '50 ml'], video: 'images/body-oil.mp4', oneOf: ['Lavender', 'Rose'], ...P('body-oil') },
-    { id: 'deodorant', name: 'Deodorant', sizes: ['20 g', '100 g'], video: 'images/deodorant.mp4', ...P('deodorant') },
-    { id: 'lip-balm', name: 'Lip Balm', sizes: ['7 g'], video: 'images/lip-balm.mp4', ...P('lip-balm') },
-    { id: 'candle', name: 'Wooden-Wick Candle', sizes: ['100 ml'], video: 'images/candle.mp4', ...P('candle') },
+    // scents: the only choices for that product (pick one). ingredients(scent): names only, in order, never amounts.
+    { id: 'body-butter', name: 'Whipped Body Butter', sizes: ['20 g', '100 g'], video: 'images/body-butter.mp4', ...P('body-butter'),
+      scents: ['Lavender', 'Neutral'],
+      ingredients: (sc) => ['Shea butter', 'Sweet almond oil', 'Beeswax', 'Kaolin clay', ...(sc === 'Lavender' ? ['Lavender essential oil'] : []), 'Vitamin E'] },
+    { id: 'soap-bar', name: 'Soap Bar', sizes: ['20 g', '100 g'], video: 'images/soap-bar.mp4', ...P('soap-bar'),
+      scents: ['Lavender', 'Coffee', 'Charcoal', 'Rose', 'Neutral'],
+      ingredients: (sc) => ['Saponified oils of palm, coconut, shea butter, olive and rice bran', 'Water or coconut milk',
+        ...({ Lavender: ['Lavender essential oil'], Coffee: ['Ground coffee'], Charcoal: ['Activated charcoal'], Rose: ['Rose essential oil'] }[sc] || [])] },
+    { id: 'shampoo-bar', name: 'Shampoo Bar', sizes: ['20 g', '100 g'], video: 'images/shampoo-bars.mp4', ...P('shampoo-bar'),
+      scents: ['Rosemary'],
+      ingredients: () => ['Sodium cocoyl isethionate (gentle cleanser)', 'Cocamidopropyl betaine', 'BTMS-50 (conditioner)', 'Cetyl alcohol',
+        'Kaolin clay', 'Rosemary powder', 'Calendula-infused rice bran oil', 'Rosemary essential oil', 'Castor oil', 'Vegetable glycerin', 'Phenoxyethanol SA (preservative)'] },
+    { id: 'hair-oil', name: 'Hair Oil', sizes: ['20 ml', '50 ml'], video: 'images/hair-oil.mp4', ...P('hair-oil'),
+      scents: ['Rosemary'],
+      ingredients: () => ['Rosemary-infused rice bran oil', 'Sweet almond oil', 'Vegetable glycerin', 'Vitamin E', 'Rosemary essential oil'] },
+    { id: 'body-oil', name: 'Body Oil', sizes: ['20 ml', '50 ml'], video: 'images/body-oil.mp4', ...P('body-oil'),
+      scents: ['Lavender', 'Rose'],
+      ingredients: (sc) => [`${sc}-infused oil`, 'Sweet almond oil', 'Vegetable glycerin', 'Vitamin E', `${sc} essential oil`] },
+    { id: 'deodorant', name: 'Deodorant', sizes: ['20 g', '100 g'], video: 'images/deodorant.mp4', ...P('deodorant'),
+      scents: ['Lavender', 'Lemongrass', 'Peppermint'],
+      ingredients: (sc) => ['Coconut oil', 'Kaolin clay', 'Shea butter', 'Beeswax', 'Magnesium hydroxide', `${sc} essential oil`] },
+    { id: 'lip-balm', name: 'Lip Balm', sizes: ['7 g'], video: 'images/lip-balm.mp4', ...P('lip-balm'),
+      scents: ['Peppermint + Kaffir Lime', 'Lily'],
+      ingredients: (sc) => ['Coconut wax', 'Beeswax', 'Shea butter', 'Vitamin E', 'Vegetable glycerin',
+        ...(sc === 'Lily' ? ['Lily essential oil'] : ['Peppermint essential oil', 'Kaffir lime essential oil'])] },
+    // the candle keeps the open choice: one oil or a blend of up to three, or unscented
+    { id: 'candle', name: 'Wooden-Wick Candle', sizes: ['100 ml'], video: 'images/candle.mp4', ...P('candle'),
+      ingredients: (sc, oils) => ['Soy wax', 'Coconut wax', 'Beeswax', 'Wooden wick', ...oils.map((o) => `${o} essential oil`)] },
   ];
+  // ring colour for each fixed scent (Neutral has no ring)
+  const SCENT_COLOR = { Lavender: '#b9a3d9', Lemongrass: '#c9d66b', Peppermint: '#7fc6a4', Rosemary: '#7fae6b', Coffee: '#7b5537',
+    Charcoal: '#3a3f45', Rose: '#e0849f', Lily: '#f2c6d4', 'Peppermint + Kaffir Lime': '#9fd08a' };
 
   const OILS = {
     'Citrus': { color: '#f4b740', items: ['Grapefruit', 'Kaffir Lime', 'Lemon', 'Orange', 'Tangerine', 'Thai Bergamot'] },
@@ -31,14 +54,15 @@
 
   const $ = (s, el = document) => el.querySelector(s);
   const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const oilColor = (n) => { for (const f in OILS) if (OILS[f].items.includes(n)) return OILS[f].color; return '#cccccc'; };
+  const oilColor = (n) => { if (SCENT_COLOR[n]) return SCENT_COLOR[n]; for (const f in OILS) if (OILS[f].items.includes(n)) return OILS[f].color; return ''; };
   const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
   const toHex = (a) => '#' + a.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('');
   // scent colour for the ring around a thumbnail (blend of the chosen oils)
   const tintFor = (p, oils) => {
-    if (!oils.length) return '';
+    const cols = oils.map(oilColor).filter(Boolean);
+    if (!cols.length) return '';
     const avg = [0, 0, 0];
-    oils.forEach((o) => hex(oilColor(o)).forEach((v, i) => { avg[i] += v / oils.length; }));
+    cols.forEach((c) => hex(c).forEach((v, i) => { avg[i] += v / cols.length; }));
     return toHex(avg);
   };
   const byId = (id) => PRODUCTS.find((x) => x.id === id);
@@ -74,7 +98,7 @@
   const panel = $('#gbConfig');
   function openConfig(p) {
     current = p;
-    cfg = { size: p.sizes[0], oils: p.fixedOils ? [...p.fixedOils] : p.oneOf ? [p.oneOf[0]] : [] };
+    cfg = { size: p.sizes[0], oils: p.scents ? [p.scents[0]] : [] };
     grid.querySelectorAll('.gb-card').forEach((c) => c.classList.toggle('sel', c.dataset.id === p.id));
     panel.hidden = false;
     renderConfig();
@@ -85,10 +109,10 @@
     const p = current;
     const tint = tintFor(p, cfg.oils);
     let scents;
-    if (p.fixedOils) {
-      scents = `<p class="gb-note">Hair Oil is made with Rosemary only, so there's nothing to choose here.</p><div class="gb-chips"><span class="gb-chip on">Rosemary</span></div>`;
-    } else if (p.oneOf) {
-      scents = `<p class="gb-note">Body Oil comes in Lavender or Rose. Pick one.</p><div class="gb-chips">${p.oneOf.map((o) => `<button type="button" class="gb-chip${cfg.oils[0] === o ? ' on' : ''}" data-one="${o}">${o}</button>`).join('')}</div>`;
+    if (p.scents && p.scents.length === 1) {
+      scents = `<p class="gb-note">${p.name} is made with ${p.scents[0]} only, so there's nothing to choose here.</p><div class="gb-chips"><span class="gb-chip on">${p.scents[0]}</span></div>`;
+    } else if (p.scents) {
+      scents = `<p class="gb-note">Pick one.</p><div class="gb-chips">${p.scents.map((o) => `<button type="button" class="gb-chip${cfg.oils[0] === o ? ' on' : ''}" data-one="${esc(o)}">${esc(o)}</button>`).join('')}</div>`;
     } else {
       scents = `<p class="gb-note">Pick one essential oil or blend up to three. Leave it empty for unscented.</p>` +
         Object.entries(OILS).map(([fam, f]) => `<div class="gb-fam"><h4><i style="background:${f.color}"></i>${esc(fam)}</h4><div class="gb-chips">${
@@ -99,12 +123,14 @@
     panel.innerHTML = `
       <div class="gb-config-head">
         ${thumbFor(p, tint).replace('gb-th', 'gb-th gb-preview')}
-        <div><h3>${p.name}</h3><p class="gb-pick">${cfg.size}${cfg.oils.length ? ' · ' + cfg.oils.join(', ') : ' · Unscented'}</p></div>
+        <div><h3>${p.name}</h3><p class="gb-pick">${cfg.size}${cfg.oils.length ? ' · ' + esc(cfg.oils.join(', ')) : ' · Unscented'}</p></div>
       </div>
       <div class="gb-sub">Size</div>
       <div class="gb-chips">${p.sizes.map((s) => `<button type="button" class="gb-chip${cfg.size === s ? ' on' : ''}" data-size="${s}">${s}</button>`).join('')}</div>
       <div class="gb-sub">Scent</div>
       ${scents}
+      <div class="gb-sub">Ingredients</div>
+      <p class="gb-ingr">${p.ingredients(cfg.oils[0], cfg.oils).map(esc).join('<i> · </i>')}</p>
       <button type="button" class="btn btn--solid gb-add" id="gbAdd">Add to box <span class="arrow">→</span></button>`;
     panel.querySelectorAll('[data-size]').forEach((b) => b.onclick = () => { cfg.size = b.dataset.size; renderConfig(); });
     panel.querySelectorAll('[data-one]').forEach((b) => b.onclick = () => { cfg.oils = [b.dataset.one]; renderConfig(); });
@@ -148,7 +174,11 @@
       { transform: `translate(${mx}px, ${my}px) scale(1.15) rotate(-12deg)`, opacity: 1, offset: 0.45 },
       { transform: `translate(${ex}px, ${ey}px) scale(0.55) rotate(8deg)`, opacity: 0.9 },
     ], { duration: 850, easing: 'cubic-bezier(0.45, 0, 0.25, 1)', fill: 'forwards' });
-    anim.onfinish = () => { ghost.remove(); done(); };
+    // if the animation clock is paused (background tab), still land the product after a moment
+    let landed = false;
+    const land = () => { if (landed) return; landed = true; ghost.remove(); done(); };
+    anim.onfinish = land;
+    setTimeout(land, 1200);
   }
 
   function bounce() {
