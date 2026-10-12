@@ -11,31 +11,40 @@
   // Both are frames from the product videos, cut above the watermark strip.
   const P = (id) => ({ poster: `images/posters/${id}.jpg`, thumb: `images/posters/${id}-t.jpg` });
   const PRODUCTS = [
-    // scents: the only choices for that product (pick one). ingredients(scent): names only, in order, never amounts.
+    // scents: the only choices for that product (pick one). ingredients(scent): INCI names, in order, never amounts.
     { id: 'body-butter', name: 'Whipped Body Butter', sizes: ['20 g', '100 g'], video: 'images/body-butter.mp4', ...P('body-butter'),
       scents: ['Lavender', 'Neutral'],
-      ingredients: (sc) => ['Shea butter', 'Sweet almond oil', 'Beeswax', 'Kaolin clay', ...(sc === 'Lavender' ? ['Lavender essential oil'] : []), 'Vitamin E'] },
+      ingredients: (sc) => ['Butyrospermum Parkii (Shea) Butter', 'Prunus Amygdalus Dulcis (Sweet Almond) Oil', 'Cera Alba (Beeswax)', 'Kaolin',
+        ...(sc === 'Lavender' ? ['Lavandula Angustifolia (Lavender) Oil'] : []), 'Tocopherol (Vitamin E)'] },
     { id: 'soap-bar', name: 'Soap Bar', sizes: ['20 g', '100 g'], video: 'images/soap-bar.mp4', ...P('soap-bar'),
       scents: ['Lavender', 'Coffee', 'Charcoal', 'Rose', 'Neutral'],
-      ingredients: (sc) => ['Saponified oils of palm, coconut, shea butter, olive and rice bran', 'Water or coconut milk',
-        ...({ Lavender: ['Lavender essential oil'], Coffee: ['Ground coffee'], Charcoal: ['Activated charcoal'], Rose: ['Rose essential oil'] }[sc] || [])] },
+      // lavender and rose soaps use rice bran oil infused with the flowers, not essential oils
+      ingredients: (sc) => ['Sodium Palmate', 'Aqua (Water)', 'Sodium Cocoate', 'Sodium Shea Butterate', 'Sodium Olivate', 'Oryza Sativa (Rice) Bran Oil',
+        ...({ Lavender: ['Lavandula Angustifolia (Lavender) Flower Extract'], Rose: ['Rosa Damascena (Rose) Flower Extract'],
+          Coffee: ['Coffea Arabica (Coffee) Seed Powder'], Charcoal: ['Charcoal Powder'] }[sc] || []), 'Glycerin'] },
     { id: 'shampoo-bar', name: 'Shampoo Bar', sizes: ['20 g', '100 g'], video: 'images/shampoo-bars.mp4', ...P('shampoo-bar'),
       scents: ['Rosemary'],
-      ingredients: () => ['Sodium cocoyl isethionate (gentle cleanser)', 'Cocamidopropyl betaine', 'BTMS-50 (conditioner)', 'Cetyl alcohol',
-        'Kaolin clay', 'Rosemary powder', 'Calendula-infused rice bran oil', 'Rosemary essential oil', 'Castor oil', 'Vegetable glycerin', 'Phenoxyethanol SA (preservative)'] },
+      ingredients: () => ['Sodium Cocoyl Isethionate', 'Cocamidopropyl Betaine', 'Behentrimonium Methosulfate', 'Cetyl Alcohol', 'Kaolin',
+        'Rosmarinus Officinalis (Rosemary) Leaf Powder', 'Oryza Sativa (Rice) Bran Oil', 'Calendula Officinalis (Calendula) Flower Extract',
+        'Rosmarinus Officinalis (Rosemary) Leaf Oil', 'Ricinus Communis (Castor) Seed Oil', 'Glycerin', 'Butylene Glycol', 'Phenoxyethanol'] },
     { id: 'hair-oil', name: 'Hair Oil', sizes: ['20 ml', '50 ml'], video: 'images/hair-oil.mp4', ...P('hair-oil'),
       scents: ['Rosemary'],
-      ingredients: () => ['Rosemary-infused rice bran oil', 'Sweet almond oil', 'Vegetable glycerin', 'Vitamin E', 'Rosemary essential oil'] },
+      ingredients: () => ['Oryza Sativa (Rice) Bran Oil', 'Rosmarinus Officinalis (Rosemary) Leaf Extract', 'Prunus Amygdalus Dulcis (Sweet Almond) Oil',
+        'Glycerin', 'Tocopherol (Vitamin E)', 'Rosmarinus Officinalis (Rosemary) Leaf Oil'] },
     { id: 'body-oil', name: 'Body Oil', sizes: ['20 ml', '50 ml'], video: 'images/body-oil.mp4', ...P('body-oil'),
       scents: ['Lavender', 'Rose'],
-      ingredients: (sc) => [`${sc}-infused oil`, 'Sweet almond oil', 'Vegetable glycerin', 'Vitamin E', `${sc} essential oil`] },
+      ingredients: (sc) => ['Oryza Sativa (Rice) Bran Oil',
+        sc === 'Rose' ? 'Rosa Damascena (Rose) Flower Extract' : 'Lavandula Angustifolia (Lavender) Flower Extract',
+        'Prunus Amygdalus Dulcis (Sweet Almond) Oil', 'Glycerin', 'Tocopherol (Vitamin E)',
+        sc === 'Rose' ? 'Rosa Damascena (Rose) Flower Oil' : 'Lavandula Angustifolia (Lavender) Oil'] },
     { id: 'deodorant', name: 'Deodorant', sizes: ['20 g', '100 g'], video: 'images/deodorant.mp4', ...P('deodorant'),
       scents: ['Lavender', 'Lemongrass', 'Peppermint'],
-      ingredients: (sc) => ['Coconut oil', 'Kaolin clay', 'Shea butter', 'Beeswax', 'Magnesium hydroxide', `${sc} essential oil`] },
+      ingredients: (sc) => ['Cocos Nucifera (Coconut) Oil', 'Kaolin', 'Butyrospermum Parkii (Shea) Butter', 'Cera Alba (Beeswax)', 'Magnesium Hydroxide',
+        { Lavender: 'Lavandula Angustifolia (Lavender) Oil', Lemongrass: 'Cymbopogon Citratus (Lemongrass) Leaf Oil', Peppermint: 'Mentha Piperita (Peppermint) Oil' }[sc]] },
     { id: 'lip-balm', name: 'Lip Balm', sizes: ['7 g'], video: 'images/lip-balm.mp4', ...P('lip-balm'),
       scents: ['Peppermint + Kaffir Lime', 'Lily'],
-      ingredients: (sc) => ['Coconut wax', 'Beeswax', 'Shea butter', 'Vitamin E', 'Vegetable glycerin',
-        ...(sc === 'Lily' ? ['Lily essential oil'] : ['Peppermint essential oil', 'Kaffir lime essential oil'])] },
+      ingredients: (sc) => ['Hydrogenated Coconut Oil (Coconut Wax)', 'Cera Alba (Beeswax)', 'Butyrospermum Parkii (Shea) Butter', 'Tocopherol (Vitamin E)', 'Glycerin',
+        ...(sc === 'Lily' ? ['Lilium Candidum (Lily) Flower Extract'] : ['Mentha Piperita (Peppermint) Oil', 'Citrus Hystrix (Kaffir Lime) Peel Oil'])] },
     // the candle keeps the open choice: one oil or a blend of up to three, or unscented
     { id: 'candle', name: 'Wooden-Wick Candle', sizes: ['100 ml'], video: 'images/candle.mp4', ...P('candle'),
       ingredients: (sc, oils) => ['Soy wax', 'Coconut wax', 'Beeswax', 'Wooden wick', ...oils.map((o) => `${o} essential oil`)] },
@@ -129,7 +138,7 @@
       <div class="gb-chips">${p.sizes.map((s) => `<button type="button" class="gb-chip${cfg.size === s ? ' on' : ''}" data-size="${s}">${s}</button>`).join('')}</div>
       <div class="gb-sub">Scent</div>
       ${scents}
-      <div class="gb-sub">Ingredients</div>
+      <div class="gb-sub">Ingredients (INCI)</div>
       <p class="gb-ingr">${p.ingredients(cfg.oils[0], cfg.oils).map(esc).join('<i> · </i>')}</p>
       <button type="button" class="btn btn--solid gb-add" id="gbAdd">Add to box <span class="arrow">→</span></button>`;
     panel.querySelectorAll('[data-size]').forEach((b) => b.onclick = () => { cfg.size = b.dataset.size; renderConfig(); });
