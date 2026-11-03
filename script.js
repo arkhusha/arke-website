@@ -152,7 +152,12 @@ if (guideModal) {
   };
 
   document.querySelectorAll('[data-guide-modal]').forEach((el) =>
-    el.addEventListener('click', (e) => { e.preventDefault(); openModal(el); })
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      // paid guides skip the pop-up: MailerLite checkout asks for name and email itself
+      if (el.dataset.guideType === 'paid' && el.dataset.checkout) { location.href = el.dataset.checkout; return; }
+      openModal(el);
+    })
   );
   guideModal.querySelectorAll('[data-modal-close]').forEach((el) => el.addEventListener('click', closeModal));
   document.addEventListener('keydown', (e) => {
