@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gift Boxes — ARK Experience</title>
   <meta name="description" content="Build a gift box of handmade natural body care. Pick at least 3 products, choose sizes and scents, and request a quote for 10 boxes or more. Made in Thailand.">
+  <link rel="canonical" href="https://www.arkarkark.com/gift-boxes">
   <script>
     document.documentElement.classList.add('js');
+    // old addresses (GitHub Pages, raw pages.dev) go to the same page on the real domain
+    if (/(^|\.)github\.io$|\.pages\.dev$/.test(location.hostname)) location.replace('https://www.arkarkark.com' + (location.pathname.replace(/^\/arke-website/, '').replace(/(\/index)?\.html$/, '') || '/') + location.search + location.hash);
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
