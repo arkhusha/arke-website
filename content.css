@@ -1,0 +1,173 @@
+/* ============================================================
+   ARKE — content blocks (v2): FAQ, guide byline, blog list, articles
+   Loaded after styles.css + site.css (+ pages.css or home.css).
+   Same "Air" system: Oswald 600 headings, Montserrat 400/600 body.
+   ============================================================ */
+
+/* ============================================================
+   FAQ · questions as headings, the answer first
+   ============================================================ */
+.faq { background: var(--cloud); padding: var(--section-pad) var(--gutter); }
+.faq--mist { background: var(--sky-mist); }
+.faq-wrap {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 5vw, 80px); align-items: start;
+}
+.faq-side { align-self: stretch; }
+.faq-sticky { position: sticky; top: 120px; }
+.faq-sticky .section-heading { margin: 0; }
+.faq-note { margin-top: 18px; max-width: 360px; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+.faq-list { border-top: 1px solid rgba(22, 33, 46, 0.12); }
+.faq-item { border-bottom: 1px solid rgba(22, 33, 46, 0.12); }
+.faq-item summary {
+  list-style: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  padding: 26px 0;
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(19px, 1.9vw, 26px); line-height: 1.12; color: var(--ink);
+  transition: color 0.3s ease;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: ''; flex: none; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--sky-mist) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 3v10M3 8h10' stroke='%23426188' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / 14px no-repeat;
+  transition: transform 0.5s var(--ease-out), background-color 0.3s ease;
+}
+.faq--mist .faq-item summary::after { background-color: var(--cloud); }
+.faq-item summary:hover { color: var(--sky-deep); }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item summary:focus-visible { outline: 2px solid var(--action-blue); outline-offset: 4px; border-radius: 4px; }
+.faq-a { padding: 0 64px 28px 0; }
+.faq-a p { font-size: 15.5px; line-height: 1.75; color: var(--ink-soft); max-width: 640px; }
+.faq-a p + p { margin-top: 12px; }
+.faq-a a { color: var(--action-blue); text-underline-offset: 3px; }
+
+/* related reading under the FAQ heading */
+.reads { margin-top: clamp(28px, 4vw, 44px); }
+.reads-label { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+.reads ul { list-style: none; border-top: 1px solid rgba(22, 33, 46, 0.12); }
+.reads li { border-bottom: 1px solid rgba(22, 33, 46, 0.12); }
+.reads a {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 16px 0; text-decoration: none; color: var(--ink);
+  font-size: 15px; font-weight: 600; line-height: 1.4;
+  transition: color 0.3s ease;
+}
+.reads a span { flex: none; color: var(--action-blue); transition: transform 0.5s var(--ease-out); }
+.reads a:hover { color: var(--action-blue); }
+.reads a:hover span { transform: translateX(6px); }
+
+/* ============================================================
+   Guide hero byline (author + last updated)
+   ============================================================ */
+.gx-by { margin-top: 18px; font-size: 12.5px; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.92); text-shadow: 0 1px 14px rgba(34, 60, 92, 0.3); }
+.gx-by a { color: var(--cloud); text-underline-offset: 3px; }
+
+/* ============================================================
+   Blog · article cards
+   ============================================================ */
+.posts-sec { background: var(--cloud); padding: var(--section-pad) var(--gutter); }
+.posts-sec--mist { background: var(--sky-mist); }
+.posts-head { max-width: 1240px; margin: 0 auto clamp(36px, 5vw, 60px); display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+.posts-head .section-heading { margin: 0; }
+.posts-head .lead { max-width: 420px; font-size: 15px; }
+.posts { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px); }
+.post-card {
+  display: flex; flex-direction: column;
+  border-radius: 22px; overflow: hidden; text-decoration: none; color: inherit;
+  background: var(--cloud); border: 1px solid rgba(66, 97, 136, 0.12);
+  box-shadow: 0 30px 60px -45px rgba(22, 33, 46, 0.45);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.posts-sec .post-card { background: var(--sky-mist); }
+.posts-sec--mist .post-card { background: var(--cloud); }
+.post-card:hover { transform: translateY(-6px); box-shadow: 0 40px 70px -45px rgba(22, 33, 46, 0.55); }
+.post-card-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: linear-gradient(180deg, #b9d2ec, #eef4fb); }
+.post-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+.post-card:hover .post-card-media img { transform: scale(1.05); }
+.post-card-body { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.post-card-cat { font-size: 10.5px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--action-blue); }
+.post-card h3 { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: clamp(21px, 1.9vw, 26px); line-height: 1.04; color: var(--ink); }
+.post-card p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
+.post-card-go { margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center; gap: 10px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--action-blue); }
+.post-card-go span { transition: transform 0.5s var(--ease-out); }
+.post-card:hover .post-card-go span { transform: translateX(6px); }
+
+/* ============================================================
+   Article page
+   ============================================================ */
+.p-hero--post { min-height: 0; padding: 160px var(--gutter) clamp(70px, 9vw, 110px); }
+.post-title {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(38px, 5.6vw, 86px); line-height: 0.95; letter-spacing: -0.005em;
+  max-width: 1080px; margin: 0 auto;
+  text-shadow: 0 10px 40px rgba(46, 72, 104, 0.18);
+}
+.post-title .accent-italic { font-size: 0.9em; }
+.post-byline {
+  margin-top: clamp(22px, 3svh, 30px);
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 13px; letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.94);
+}
+.post-byline img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 2px solid rgba(255, 255, 255, 0.85); }
+.post-byline a { color: var(--cloud); text-underline-offset: 3px; }
+.post-byline span { text-align: left; line-height: 1.5; }
+
+.post-sec { background: var(--cloud); padding: clamp(56px, 8vw, 100px) var(--gutter) var(--section-pad); }
+.post { max-width: 760px; margin: 0 auto; }
+.post-cover {
+  position: relative; aspect-ratio: 16 / 10; border-radius: 22px; overflow: hidden;
+  margin-bottom: clamp(32px, 5vw, 52px);
+  background: linear-gradient(180deg, #b9d2ec, #eef4fb);
+  box-shadow: 0 40px 70px -45px rgba(22, 33, 46, 0.5);
+}
+.post-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.post-answer {
+  background: var(--sky-mist); border-radius: 20px;
+  padding: clamp(24px, 3.4vw, 34px) clamp(24px, 3.6vw, 38px);
+  margin-bottom: clamp(36px, 5vw, 52px);
+}
+.post-answer .eyebrow { margin-bottom: 14px; }
+.post .post-answer p { font-size: clamp(16.5px, 1.6vw, 18.5px); line-height: 1.7; color: var(--ink); }
+.post .post-answer .eyebrow { font-size: 11px; line-height: 1.4; color: var(--action-blue); }
+.post h2 {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(26px, 3vw, 38px); line-height: 1.04; color: var(--ink);
+  margin: clamp(44px, 6vw, 64px) 0 18px;
+}
+.post h3 {
+  font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+  font-size: clamp(20px, 2vw, 24px); line-height: 1.1; color: var(--ink);
+  margin: 34px 0 12px;
+}
+.post p, .post li { font-size: 16.5px; line-height: 1.8; color: var(--ink-soft); }
+.post p + p, .post ul + p, .post ol + p, .post p + ul, .post p + ol { margin-top: 16px; }
+.post ul, .post ol { padding-left: 1.3em; display: grid; gap: 10px; }
+.post ul { list-style: disc; }
+.post ol { list-style: decimal; }
+.post li::marker { color: var(--sky); font-weight: 600; }
+.post strong { color: var(--ink); font-weight: 600; }
+.post a { color: var(--action-blue); text-underline-offset: 3px; }
+.post-note {
+  margin-top: clamp(44px, 6vw, 64px); padding-top: 24px;
+  border-top: 1px solid rgba(22, 33, 46, 0.12);
+  font-size: 13.5px !important; line-height: 1.7; color: var(--ink-soft);
+}
+.post-share { margin-top: 18px; font-size: 13.5px; color: var(--ink-soft); }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 899px) {
+  .faq-wrap { grid-template-columns: 1fr; }
+  .faq-sticky { position: static; }
+  .posts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .faq-a { padding-right: 0; }
+  .faq-item summary::after { width: 34px; height: 34px; }
+  .posts { grid-template-columns: 1fr; }
+  .p-hero--post { padding-top: 130px; }
+  .post p, .post li { font-size: 16px; }
+}
