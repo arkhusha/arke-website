@@ -2,7 +2,7 @@
 
 // Sticky header shrink
 const header = document.querySelector('.site-header');
-window.addEventListener('scroll', () => {
+if (header) window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 

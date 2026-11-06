@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Welcome — ARK Experience</title>
+  <meta name="description" content="Free and in-depth guides for natural body care you can make at home, tested in Thailand. Start with a free guide, then go deeper. Made for Curious.">
+  <link rel="canonical" href="https://www.arkarkark.com/welcome">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#426188">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.arkarkark.com/welcome">
+  <meta property="og:title" content="Yana · ARK Experience">
+  <meta property="og:description" content="Tested natural body care formulas for curious beginners. Start with a free guide.">
+  <meta property="og:image" content="https://www.arkarkark.com/assets/yana-today.jpg">
+  <script>
+    document.documentElement.classList.add('js');
+    // old addresses (GitHub Pages, raw pages.dev) go to the same page on the real domain
+    if (/(^|\.)github\.io$|\.pages\.dev$/.test(location.hostname)) location.replace('https://www.arkarkark.com' + (location.pathname.replace(/^\/arke-website/, '').replace(/(\/index)?\.html$/, '') || '/') + location.search + location.hash);
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/analogue-italic-webfont.ttf" as="font" type="font/ttf" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261103b">
+  <link rel="stylesheet" href="site.css?v=20261103b">
+  <style>
+    /* ============ Welcome (link in bio) ============ */
+    :root { --w-col: 480px; --w-pad: 18px; }
+    body.welcome { background: var(--sky-mist); }
+
+    /* ---- Sky header ---- */
+    .w-sky {
+      position: relative;
+      overflow: hidden;
+      color: var(--cloud);
+      text-align: center;
+      padding: calc(16px + env(safe-area-inset-top)) var(--w-pad) 70px;
+      background: linear-gradient(172deg, #426188 0%, #5e87b8 36%, #7fa3cf 68%, #a9c6e6 100%);
+    }
+    .w-top {
+      position: relative; z-index: 1;
+      max-width: var(--w-col); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .w-logo {
+      display: inline-flex; align-items: center;
+      padding: 11px 17px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 26px -16px rgba(13, 32, 58, 0.55);
+    }
+    .w-logo img { height: 15px; width: auto; }
+    .w-share {
+      width: 42px; height: 42px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      color: var(--cloud);
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .w-share:hover { background: var(--cloud); color: var(--sky-deep); transform: translateY(-2px); }
+    .w-share svg { width: 18px; height: 18px; }
+
+    .w-profile { position: relative; z-index: 1; max-width: var(--w-col); margin: 30px auto 0; }
+    .w-avatar {
+      width: 118px; height: 118px;
+      margin: 0 auto 20px;
+      border-radius: 36px;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 26px 50px -24px rgba(13, 32, 58, 0.7);
+      background: var(--sky-light);
+    }
+    .w-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 20%;
+      transform: scale(1.5); transform-origin: 52% 30%;
+    }
+    .w-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 1.05;
+      letter-spacing: 0.005em;
+    }
+    .w-name .accent-italic { font-size: 1.08em; }
+    .w-handle {
+      margin: 10px 0 16px;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+    }
+    .w-bio {
+      max-width: 370px; margin: 0 auto 24px;
+      font-size: 15px; line-height: 1.65;
+      color: rgba(255, 255, 255, 0.94);
+      text-wrap: balance;
+    }
+    .w-social { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .w-social a {
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      color: var(--cloud);
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+    .w-social a:hover { background: var(--cloud); color: var(--sky-deep); transform: translateY(-2px); }
+    .w-social svg { width: 19px; height: 19px; }
+
+    /* ---- Sheet ---- */
+    .w-sheet {
+      position: relative; z-index: 2;
+      margin-top: -32px;
+      padding: 34px var(--w-pad) calc(40px + env(safe-area-inset-bottom));
+      border-radius: 30px 30px 0 0;
+      background: var(--sky-mist);
+    }
+    .w-inner { max-width: var(--w-col); margin: 0 auto; }
+    .w-sec + .w-sec { margin-top: 42px; }
+    .w-sec-head { padding: 0 4px; margin-bottom: 16px; }
+    .w-sec-head .eyebrow { margin-bottom: 8px; font-size: 10.5px; }
+    .w-sec-head h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 27px;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .w-sec-head h2 .accent-italic { color: var(--sky-mid); font-size: 1.06em; }
+    .w-sec-head p { margin-top: 6px; font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+
+    /* ---- Free guide cards ---- */
+    .w-free {
+      background: var(--cloud);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(66, 97, 136, 0.08);
+      box-shadow: 0 22px 44px -32px rgba(22, 33, 46, 0.45);
+    }
+    .w-free + .w-free { margin-top: 14px; }
+    .w-free-media {
+      position: relative; display: block; width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0; padding: 0; cursor: pointer;
+      background: var(--sky-light);
+      overflow: hidden;
+    }
+    .w-free-media img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 1.2s var(--ease-out);
+    }
+    .w-free-media:hover img { transform: scale(1.04); }
+    .w-free-media::after {
+      content: '';
+      position: absolute; inset: auto 0 0 0; height: 55%;
+      background: linear-gradient(180deg, rgba(22, 33, 46, 0) 0%, rgba(22, 33, 46, 0.5) 100%);
+      pointer-events: none;
+    }
+    .w-free-tag {
+      position: absolute; left: 18px; bottom: 14px; z-index: 1;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--cloud);
+    }
+    .w-free-body { padding: 18px 20px 20px; }
+    .w-free-body h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 21px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .w-free-body p { margin: 7px 0 16px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+    .w-free-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .w-free-actions .btn { padding: 13px 22px; font-size: 11.5px; letter-spacing: 0.12em; }
+
+    .w-link {
+      font-size: 12.5px; font-weight: 600;
+      color: var(--sky-deep);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .w-link:hover { color: var(--action-blue); }
+
+    /* ---- Row links ---- */
+    .w-row {
+      position: relative;
+      display: flex; align-items: center; gap: 14px;
+      padding: 10px 12px 10px 10px;
+      background: var(--cloud);
+      border-radius: 20px;
+      border: 1px solid rgba(66, 97, 136, 0.08);
+      box-shadow: 0 18px 36px -30px rgba(22, 33, 46, 0.45);
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    }
+    .w-row + .w-row { margin-top: 10px; }
+    .w-row:hover { transform: translateY(-2px); box-shadow: 0 22px 40px -26px rgba(22, 33, 46, 0.5); }
+    .w-thumb {
+      flex: none;
+      width: 66px; height: 66px;
+      border-radius: 15px;
+      overflow: hidden;
+      background: linear-gradient(160deg, #5e87b8, #b9d2ec);
+      display: grid; place-items: center;
+      color: var(--cloud);
+    }
+    .w-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .w-thumb svg { width: 26px; height: 26px; }
+    .w-row-text { flex: 1; min-width: 0; }
+    .w-row-title {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 17.5px;
+      line-height: 1.2;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    /* the whole card opens the main link */
+    .w-row-title::after { content: ''; position: absolute; inset: 0; border-radius: 20px; }
+    .w-row-hook { margin-top: 3px; font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); }
+    .w-row-meta {
+      margin-top: 5px;
+      font-size: 12px; font-weight: 600;
+      color: var(--sky);
+    }
+    .w-row-meta span { color: var(--action-blue); white-space: nowrap; }
+    .w-chev { flex: none; color: var(--sky); font-size: 18px; padding-right: 4px; transition: transform 0.4s var(--ease-out), color 0.3s ease; }
+    .w-row:hover .w-chev { transform: translateX(3px); color: var(--action-blue); }
+
+    .w-buy {
+      position: relative; z-index: 1;
+      flex: none;
+      display: grid; justify-items: center; gap: 1px;
+      min-width: 74px;
+      padding: 9px 12px 10px;
+      border-radius: 16px;
+      background: var(--action-blue);
+      color: var(--cloud);
+      text-decoration: none;
+      line-height: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .w-buy:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(43, 127, 255, 0.7); }
+    .w-buy small { font-size: 9px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.85; }
+    .w-buy strong { font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: 0.01em; margin-top: 4px; }
+
+    /* ---- Footer ---- */
+    .w-foot { margin-top: 54px; text-align: center; }
+    .w-foot-line { font-family: var(--font-accent); font-style: italic; font-size: 28px; color: var(--sky-deep); }
+    .w-foot-line span { font-family: var(--font-display); font-style: normal; font-weight: 600; font-size: 0.8em; color: var(--ink); }
+    .w-foot-legal { margin-top: 14px; font-size: 12px; color: var(--ink-soft); }
+    .w-foot-legal a { color: inherit; text-decoration: none; }
+    .w-foot-legal a:hover { color: var(--action-blue); }
+    .w-foot-copy { margin-top: 6px; font-size: 11px; color: rgba(22, 33, 46, 0.45); }
+
+    /* ---- Toast ---- */
+    .w-toast {
+      position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 1100;
+      transform: translate(-50%, 20px); opacity: 0;
+      padding: 12px 20px; border-radius: var(--radius-pill);
+      background: var(--ink); color: var(--cloud);
+      font-size: 13px; font-weight: 600;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.4s var(--ease-out);
+    }
+    .w-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ---- Entrance ---- */
+    /* content stays visible if animations never run (fill only before start) */
+    .motion .w-in { animation: wIn 0.9s var(--ease-out) backwards; animation-delay: calc(var(--i, 0) * 70ms + 80ms); }
+    @keyframes wIn { from { opacity: 0; transform: translateY(16px); } }
+
+    @media (min-width: 640px) {
+      .w-sky { padding-bottom: 84px; }
+      .w-profile { margin-top: 40px; }
+      .w-name { font-size: 42px; }
+      .w-sheet { padding-top: 44px; }
+    }
+    @media (max-width: 360px) {
+      .w-name { font-size: 31px; }
+      .w-row { gap: 11px; }
+      .w-thumb { width: 56px; height: 56px; }
+      .w-buy { min-width: 66px; padding: 8px 10px 9px; }
+    }
+  </style>
+</head>
+<body class="welcome">
+
+  <main>
+
+  <!-- ============ PROFILE ============ -->
+  <header class="w-sky">
+    <div class="cloudlayer" aria-hidden="true">
+      <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="cloudsWelcome" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0110 0.0150" numOctaves="5" seed="31" stitchTiles="stitch" result="noise"/>
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.5 -0.42" result="c"/>
+            <feGaussianBlur in="c" stdDeviation="4"/>
+          </filter>
+          <linearGradient id="cloudsWelcomeFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.12"/>
+            <stop offset="0.5" stop-color="#fff" stop-opacity="0.32"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0.75"/>
+          </linearGradient>
+          <mask id="cloudsWelcomeMask"><rect width="600" height="520" fill="url(#cloudsWelcomeFade)"/></mask>
+        </defs>
+        <rect width="600" height="520" filter="url(#cloudsWelcome)" mask="url(#cloudsWelcomeMask)"/>
+      </svg>
+    </div>
+
+    <div class="w-top">
+      <a class="w-logo w-in" href="index.html" aria-label="ARK Experience home"><img src="assets/logo-arke.png" alt="ARK Experience" width="140" height="30"></a>
+      <button type="button" class="w-share w-in" data-share aria-label="Share this page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M5 12.5V19a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19v-6.5"/></svg>
+      </button>
+    </div>
+
+    <div class="w-profile">
+      <div class="w-avatar w-in" style="--i:1"><img src="assets/yana-today.jpg" alt="Yana, the maker behind ARK Experience" width="900" height="1600"></div>
+      <h1 class="w-name w-in" style="--i:2">Hi, I'm <span class="accent-italic">Yana.</span></h1>
+      <p class="w-handle w-in" style="--i:3">@ark.experience</p>
+      <p class="w-bio w-in" style="--i:4">I stopped buying body care in 2022 and started making my own. Here you'll find my tested formulas, written for curious beginners who'd love a break from the screen.</p>
+      <nav class="w-social w-in" style="--i:5" aria-label="ARK Experience on social media">
+        <a href="https://www.instagram.com/ark.experience" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.3" cy="6.7" r="1.05" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@ark.experience" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@ark.experience" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+        <a href="https://www.pinterest.com/ark.experience" target="_blank" rel="noopener" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.43 7.63 11.17-.1-.95-.2-2.4.04-3.44.22-.94 1.41-5.97 1.41-5.97s-.36-.72-.36-1.78c0-1.67.97-2.91 2.17-2.91 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-1 4-.28 1.19.6 2.17 1.78 2.17 2.13 0 3.77-2.25 3.77-5.5 0-2.87-2.06-4.88-5.01-4.88-3.41 0-5.42 2.56-5.42 5.21 0 1.03.4 2.14.89 2.74.1.12.11.22.08.35l-.33 1.36c-.05.22-.17.27-.4.16-1.5-.7-2.44-2.89-2.44-4.65 0-3.79 2.75-7.26 7.93-7.26 4.16 0 7.4 2.97 7.4 6.93 0 4.14-2.61 7.46-6.23 7.46-1.22 0-2.36-.63-2.75-1.38l-.75 2.85c-.27 1.04-1 2.35-1.49 3.15 1.12.35 2.31.53 3.55.53 6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/ark.experience" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="w-sheet">
+    <div class="w-inner">
+
+      <!-- ============ FREE GUIDES ============ -->
+      <section class="w-sec" aria-labelledby="w-free-title">
+        <div class="w-sec-head w-in" style="--i:6">
+          <p class="eyebrow">Start here</p>
+          <h2 id="w-free-title">Two free <span class="accent-italic">guides</span></h2>
+          <p>Instant PDF, straight to your inbox.</p>
+        </div>
+
+        <article class="w-free w-in" style="--i:7">
+          <button type="button" class="w-free-media" data-guide-modal data-guide-id="guide-beginners" data-guide-type="free" data-guide="Beginner's Guide to Natural Body Care" data-desc="16 pages on reading labels, understanding ingredients, and taking your first step into making your own. Instant PDF, straight to your inbox." aria-label="Get the free Beginner's Guide">
+            <img src="assets/guide-beginners.jpg" alt="" width="1200" height="721">
+            <span class="w-free-tag">Free · 16 pages</span>
+          </button>
+          <div class="w-free-body">
+            <h3>Beginner's Guide to Natural Body Care</h3>
+            <p>Learn to read ingredient labels, see through claims and myths, and take your first step into making your own.</p>
+            <div class="w-free-actions">
+              <button type="button" class="btn btn--solid" data-guide-modal data-guide-id="guide-beginners" data-guide-type="free" data-guide="Beginner's Guide to Natural Body Care" data-desc="16 pages on reading labels, understanding ingredients, and taking your first step into making your own. Instant PDF, straight to your inbox.">Get it free <span class="arrow">→</span></button>
+              <a class="w-link" href="guide-beginners.html">What's inside →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="w-free w-in" style="--i:8">
+          <button type="button" class="w-free-media" data-guide-modal data-guide-id="guide-lip-balm" data-guide-type="free" data-guide="Making Natural Lip Balm at Home" data-desc="One tested formula, 15 pages, and everything you need for your first batch. Instant PDF, straight to your inbox." aria-label="Get the free Lip Balm guide">
+            <img src="assets/guide-lip-balm.jpg" alt="" width="833" height="1110" style="object-position: 50% 56%">
+            <span class="w-free-tag">Free · 15 pages</span>
+          </button>
+          <div class="w-free-body">
+            <h3>Making Natural Lip Balm at Home</h3>
+            <p>Your first proper make. One tested formula, explained ingredient by ingredient, with a full step-by-step method.</p>
+            <div class="w-free-actions">
+              <button type="button" class="btn btn--solid" data-guide-modal data-guide-id="guide-lip-balm" data-guide-type="free" data-guide="Making Natural Lip Balm at Home" data-desc="One tested formula, 15 pages, and everything you need for your first batch. Instant PDF, straight to your inbox.">Get it free <span class="arrow">→</span></button>
+              <a class="w-link" href="guide-lip-balm.html">What's inside →</a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ PAID GUIDES ============ -->
+      <section class="w-sec" aria-labelledby="w-paid-title">
+        <div class="w-sec-head w-in" style="--i:9">
+          <p class="eyebrow">Go deeper</p>
+          <h2 id="w-paid-title">Four in-depth <span class="accent-italic">guides</span></h2>
+          <p>Tested formulas with full percentages. Instant PDF, one-time payment, yours to keep.</p>
+        </div>
+
+        <div class="w-row w-in" style="--i:10">
+          <div class="w-thumb"><img src="images/email/deodorant.jpg" alt="" width="1080" height="540" loading="lazy"></div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="guide-deodorant.html">Natural Deodorant</a>
+            <p class="w-row-hook">Baking-soda-free and made for Phuket's heat</p>
+            <p class="w-row-meta">16 pages · <span>See inside →</span></p>
+          </div>
+          <a class="w-buy" href="https://checkout.mailerlite.com/checkout/37617" aria-label="Buy the Natural Deodorant guide for $12.99"><small>Buy</small><strong>$12.99</strong></a>
+        </div>
+
+        <div class="w-row w-in" style="--i:11">
+          <div class="w-thumb"><img src="images/email/shampoo-bars.jpg" alt="" width="1080" height="540" loading="lazy"></div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="guide-shampoo-bars.html">Shampoo Bars</a>
+            <p class="w-row-hook">A solid shampoo that isn't soap</p>
+            <p class="w-row-meta">19 pages · <span>See inside →</span></p>
+          </div>
+          <a class="w-buy" href="https://checkout.mailerlite.com/checkout/37618" aria-label="Buy the Shampoo Bars guide for $12.99"><small>Buy</small><strong>$12.99</strong></a>
+        </div>
+
+        <div class="w-row w-in" style="--i:12">
+          <div class="w-thumb"><img src="images/email/body-butter.jpg" alt="" width="1080" height="540" loading="lazy"></div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="guide-body-butter.html">Whipped Body Butter</a>
+            <p class="w-row-hook">Whipped until it's light as a cloud</p>
+            <p class="w-row-meta">15 pages · <span>See inside →</span></p>
+          </div>
+          <a class="w-buy" href="https://checkout.mailerlite.com/checkout/37619" aria-label="Buy the Whipped Body Butter guide for $12.99"><small>Buy</small><strong>$12.99</strong></a>
+        </div>
+
+        <div class="w-row w-in" style="--i:13">
+          <div class="w-thumb"><img src="images/email/oil-infusions.jpg" alt="" width="1080" height="540" loading="lazy"></div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="guide-oil-infusions.html">Oil Infusions for Hair &amp; Body</a>
+            <p class="w-row-hook">Every method, plus two formulas</p>
+            <p class="w-row-meta">18 pages · <span>See inside →</span></p>
+          </div>
+          <a class="w-buy" href="https://checkout.mailerlite.com/checkout/37620" aria-label="Buy the Oil Infusions guide for $12.99"><small>Buy</small><strong>$12.99</strong></a>
+        </div>
+      </section>
+
+      <!-- ============ WATCH & LISTEN ============ -->
+      <section class="w-sec" aria-labelledby="w-watch-title">
+        <div class="w-sec-head w-in" style="--i:14">
+          <p class="eyebrow">While you make</p>
+          <h2 id="w-watch-title">Watch &amp; <span class="accent-italic">listen</span></h2>
+        </div>
+
+        <div class="w-row w-in" style="--i:15">
+          <div class="w-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5.5l11-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+          </div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="https://www.youtube.com/playlist?list=PLyPEI_oeMt17u3cWNOpHgIEZaQxE4yvIJ" target="_blank" rel="noopener">Background music for crafting</a>
+            <p class="w-row-hook">My calm playlist for making sessions</p>
+          </div>
+          <span class="w-chev" aria-hidden="true">→</span>
+        </div>
+
+        <div class="w-row w-in" style="--i:16">
+          <div class="w-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="3.5"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg>
+          </div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="https://www.youtube.com/@ark.experience" target="_blank" rel="noopener">Making videos on YouTube</a>
+            <p class="w-row-hook">Watch the batches come together</p>
+          </div>
+          <span class="w-chev" aria-hidden="true">→</span>
+        </div>
+      </section>
+
+      <!-- ============ MORE ============ -->
+      <section class="w-sec" aria-labelledby="w-more-title">
+        <div class="w-sec-head w-in" style="--i:17">
+          <p class="eyebrow">More ARKE</p>
+          <h2 id="w-more-title">Beyond the <span class="accent-italic">guides</span></h2>
+        </div>
+
+        <div class="w-row w-in" style="--i:18">
+          <div class="w-thumb"><img src="images/gift-box-hero.jpg" alt="" loading="lazy"></div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="gift-boxes.html">Gift boxes</a>
+            <p class="w-row-hook">Handmade natural body care for 10 boxes or more. Build yours and get a quote.</p>
+          </div>
+          <span class="w-chev" aria-hidden="true">→</span>
+        </div>
+
+        <div class="w-row w-in" style="--i:19">
+          <div class="w-thumb"><img src="assets/yana-portrait.jpg" alt="" loading="lazy" style="object-position: 42% 20%"></div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="about.html">My story</a>
+            <p class="w-row-hook">How a craving for something tactile turned into ARKE</p>
+          </div>
+          <span class="w-chev" aria-hidden="true">→</span>
+        </div>
+
+        <div class="w-row w-in" style="--i:20">
+          <div class="w-thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3z"/></svg>
+          </div>
+          <div class="w-row-text">
+            <a class="w-row-title" href="index.html">Visit the website</a>
+            <p class="w-row-hook">arkarkark.com</p>
+          </div>
+          <span class="w-chev" aria-hidden="true">→</span>
+        </div>
+      </section>
+
+      <footer class="w-foot">
+        <p class="w-foot-line"><span>Made for</span> Curious.</p>
+        <p class="w-foot-legal"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="refunds.html">Refunds</a> · <a href="mailto:info@arkarkark.com">Contact</a></p>
+        <p class="w-foot-copy">© 2026 ARK Experience · Thailand · Guides are for educational purposes only.</p>
+      </footer>
+
+    </div>
+  </div>
+
+  </main>
+
+  <div class="w-toast" role="status" aria-live="polite" data-toast></div>
+
+  <!-- ============ DOWNLOAD MODAL ============ -->
+  <div class="modal" id="download-modal" role="dialog" aria-modal="true" aria-labelledby="download-modal-title" aria-hidden="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-panel">
+      <button type="button" class="modal-close" aria-label="Close" data-modal-close>&times;</button>
+      <p class="eyebrow eyebrow--center" data-modal-kind>Free Guide</p>
+      <h2 id="download-modal-title">Get the guide for free.</h2>
+      <p data-modal-desc>Instant PDF, straight to your inbox.</p>
+      <form class="capture-form" novalidate data-guide-form>
+        <input type="text" name="name" placeholder="Your first name" required aria-label="First name" autocomplete="given-name">
+        <input type="email" name="email" placeholder="Your email address" required aria-label="Email address" autocomplete="email">
+        <button type="submit" class="btn btn--solid">Send Me the Guide</button>
+      </form>
+      <p class="capture-success">It's on its way. Check your inbox ✦</p>
+      <p class="capture-fineprint" data-modal-fine>Free PDF · No spam, ever · Unsubscribe anytime</p>
+    </div>
+  </div>
+
+  <script src="script.js?v=20261106a"></script>
+  <script>
+    // Share: native share sheet on phones, copy link elsewhere
+    (() => {
+      const btn = document.querySelector('[data-share]');
+      const toast = document.querySelector('[data-toast]');
+      if (!btn) return;
+      const url = 'https://www.arkarkark.com/welcome';
+      const show = (msg) => { toast.textContent = msg; toast.classList.add('show'); clearTimeout(show.t); show.t = setTimeout(() => toast.classList.remove('show'), 2200); };
+      btn.addEventListener('click', async () => {
+        if (navigator.share) {
+          try { await navigator.share({ title: 'ARK Experience', text: 'Natural body care guides by Yana', url }); } catch (e) {}
+          return;
+        }
+        try { await navigator.clipboard.writeText(url); show('Link copied ✦'); }
+        catch (e) { show(url); }
+      });
+    })();
+  </script>
+</body>
+</html>
