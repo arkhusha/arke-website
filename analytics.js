@@ -60,12 +60,14 @@
   // capture phase, so they fire before script.js navigates away or swaps the form for the thank-you text
   // guide pages use buttons with data-checkout, the welcome page uses plain checkout links
   const CHECKOUT_GUIDES = { 37617: 'Natural Deodorant Guide', 37618: 'Shampoo Bars Guide', 37619: 'Whipped Body Butter Guide', 37620: 'Oil Infusions for Hair & Body' };
+  const CHECKOUT_PRICES = { 37617: 14.99, 37618: 15.99, 37619: 13.99, 37620: 12.99 };  // USD, same as seo_head.PRICES
   document.addEventListener('click', (e) => {
     const b = e.target.closest('[data-guide-type="paid"][data-checkout], a[href*="checkout.mailerlite.com"]');
     if (!b) return;
     const id = ((b.dataset.checkout || b.getAttribute('href') || '').match(/checkout\/(\d+)/) || [])[1] || '';
-    gtag('event', 'begin_checkout', { currency: 'USD', value: 12.99,
-      items: [{ item_id: b.dataset.guideId || 'checkout-' + id, item_name: b.dataset.guide || CHECKOUT_GUIDES[id] || id }] });
+    const value = CHECKOUT_PRICES[id] || 0;
+    gtag('event', 'begin_checkout', { currency: 'USD', value,
+      items: [{ item_id: b.dataset.guideId || 'checkout-' + id, item_name: b.dataset.guide || CHECKOUT_GUIDES[id] || id, price: value }] });
   }, true);
 
   document.addEventListener('submit', (e) => {
