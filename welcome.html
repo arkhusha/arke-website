@@ -295,7 +295,7 @@
       .w-buy { min-width: 66px; padding: 8px 10px 9px; }
     }
   </style>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var arkeConsent;try{arkeConsent=localStorage.getItem('arke-consent')}catch(e){}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:arkeConsent==='granted'?'granted':'denied'});if(location.hostname==='www.arkarkark.com'){gtag('js',new Date());gtag('config','G-3WBLZ2V6FH');}</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var arkeConsent;try{arkeConsent=localStorage.getItem('arke-consent')}catch(e){}var arkeOff;try{var q=location.search;if(/[?&]notrack=1/.test(q))localStorage.setItem('arke-notrack','1');if(/[?&]notrack=0/.test(q))localStorage.removeItem('arke-notrack');arkeOff=localStorage.getItem('arke-notrack')==='1'}catch(e){}if(arkeOff)window['ga-disable-G-3WBLZ2V6FH']=true;gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:arkeConsent==='granted'?'granted':'denied'});if(location.hostname==='www.arkarkark.com'){gtag('js',new Date());gtag('config','G-3WBLZ2V6FH');}</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WBLZ2V6FH"></script>
   <script src="/analytics.js?v=20261106b" defer></script>
 </head>

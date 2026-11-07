@@ -25,11 +25,17 @@
 .ck .ck-no{background:#fff;color:#426188}
 @media (max-width:560px){.ck{left:12px;right:12px;bottom:12px;max-width:none}}`;
 
-  const showBanner = () => {
-    if (document.querySelector('.ck')) return;
+  const addStyle = () => {
+    if (document.getElementById('ck-style')) return;
     const style = document.createElement('style');
+    style.id = 'ck-style';
     style.textContent = css;
     document.head.appendChild(style);
+  };
+
+  const showBanner = () => {
+    if (document.querySelector('.ck')) return;
+    addStyle();
     const box = document.createElement('div');
     box.className = 'ck';
     box.setAttribute('role', 'dialog');
@@ -44,7 +50,25 @@
     box.querySelector('.ck-no').addEventListener('click', () => choose('denied'));
   };
 
-  if (!read()) showBanner();
+  // ---------- Yana's own devices ----------
+  // ?notrack=1 on any page switches Google Analytics off for this browser (the <head> snippet sets
+  // ga-disable from localStorage arke-notrack), ?notrack=0 switches it back on. No cookie message there.
+  const notrack = (() => { try { return localStorage.getItem('arke-notrack') === '1'; } catch (e) { return false; } })();
+  const flip = location.search.match(/[?&]notrack=([01])/);
+  if (flip) {
+    addStyle();
+    const note = document.createElement('div');
+    note.className = 'ck';
+    note.setAttribute('role', 'status');
+    note.innerHTML = '<p style="margin:0">' + (flip[1] === '1'
+      ? 'Done. Visits from this browser are no longer counted in Google Analytics.'
+      : 'Visits from this browser are counted in Google Analytics again.') + '</p>';
+    document.body.appendChild(note);
+    requestAnimationFrame(() => note.classList.add('show'));
+    setTimeout(() => note.remove(), 6000);
+  }
+
+  if (!read() && !notrack) showBanner();
 
   // Privacy page button: forget the choice and ask again
   document.querySelectorAll('[data-cookie-settings]').forEach((el) =>
